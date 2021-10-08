@@ -1,0 +1,99 @@
+.hero__search-main {
+  background-color: #fff;
+  width: max-content;
+  margin: 0 auto;
+  margin-bottom: 25rem;
+  border-radius: 100px;
+  overflow: hidden;
+  height: 7rem;
+  font-size: 1.3rem;
+  font-family: "Airbnb Cereal App Medium";
+}
+.search-form {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0 auto;
+}
+.input-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  height: 100%;
+  cursor: pointer;
+}
+.input-box--first {
+  padding-left: 3rem;
+}
+
+.input-box:hover:not(:last-of-type) {
+  background-color: #ececec;
+  border-radius: 100px;
+}
+
+/* .input-box:hover:not(:first-of-type) {
+  border-left: 1px solid transparent !important;
+}
+
+.input-box:not(:first-of-type) {
+  border-left: 1px solid #e2e2e2;
+} */
+
+.hero_home-textbox {
+  width: max-content;
+  margin: 0 auto;
+  text-align: center;
+}
+.search-input {
+  outline: none;
+  border: none;
+  font-family: "Airbnb Cereal App Book";
+  background: none;
+}
+.search-main-btn {
+  outline: none;
+  border: none;
+  width: 4.8rem;
+  height: 4.8rem;
+  color: #fff;
+  border-radius: 50%;
+  background-color: #ff385c;
+  transition: background-color 200ms;
+  cursor: pointer;
+}
+.search-main-btn:hover {
+  background-color: #c80025;
+}
+.main-search-icon {
+  font-size: 1.6rem;
+}
+.input-box p {
+  margin-bottom: 0.3rem;
+}
+.input-box--last {
+  display: flex;
+  align-items: center;
+}
+.input-box--last {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
+  padding-right: 1rem;
+}
+.input-box--last:hover {
+  background-color: #ececec;
+  border-radius: 100px;
+}
+/* SEARCH SEPERATORS CASCADE */
+.search-seperator {
+  width: 1px;
+  height: 3.6rem;
+  background-color: #cecece;
+}
+.hidden {
+  display: none;
+}

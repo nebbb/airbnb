@@ -1,0 +1,43 @@
+.explore-title {
+  color: #222222;
+  -webkit-font-smoothing: antialiased;
+  font-size: 3rem;
+  font-family: "Airbnb Cereal App Medium";
+  margin-bottom: 3rem;
+}
+.explore-cities-container {
+  display: grid;
+  grid-auto-flow: row;
+  grid-gap: 1.6rem;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, auto);
+  color: #222222;
+}
+.city-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  cursor: pointer;
+}
+.city-img-box {
+  border-radius: 0.8rem;
+  height: 7.2rem;
+  width: 7.2rem;
+  overflow: hidden;
+}
+.city-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.city-text-box h4 {
+  font-size: 1.6rem;
+  font-family: "Airbnb Cereal App Book";
+}
+
+.city-text-box p {
+  -webkit-font-smoothing: antialiased;
+
+  font-size: 1.6rem;
+  font-family: "Airbnb Cereal App Light";
+}

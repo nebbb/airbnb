@@ -1,0 +1,41 @@
+#modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modal-content {
+  position: absolute;
+  background-color: #fff;
+  height: 60rem;
+  border-radius: 2rem;
+  padding: 2.2rem;
+  backface-visibility: hidden;
+  animation: moveInUp 280ms linear;
+}
+
+@keyframes moveInUp {
+  0% {
+    transform: translateY(20rem);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

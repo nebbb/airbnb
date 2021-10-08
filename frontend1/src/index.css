@@ -1,0 +1,39 @@
+/* RESET */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Airbnb Cereal App Book";
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+input,
+button,
+form {
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+/* UTILITY */
+.ul-item {
+  list-style: none;
+}
+/* MAIN CONTENT */
+.main__content-wrapper {
+  padding: 4rem 8rem;
+}

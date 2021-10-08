@@ -1,0 +1,36 @@
+.header__main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 12rem;
+  color: #fff;
+  font-size: 1.6rem;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.62),
+    rgba(0, 0, 0, 0)
+  ) !important;
+}
+.header__nav-item {
+  display: inline-block;
+}
+.header__nav-item:not(:last-child) {
+  margin-right: 2rem;
+}
+.header__user-item {
+  display: inline-block;
+}
+.header__user-item:not(:last-child) {
+  margin-right: 2rem;
+}
+.header--globe {
+  fill: #fff;
+}
+.header__user {
+  display: flex;
+  align-items: center;
+}
+.header__nav-item:hover {
+  opacity: 0.8 !important;
+  text-decoration: none !important;
+}
