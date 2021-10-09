@@ -5,6 +5,10 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import HeroHome from "./components/HeroHome";
 import ExploreHome from "./components/ExploreHome";
+import TypesHome from "./components/TypesHome";
+import HostHome from "./components/HostHome";
+import DiscoverHome from "./components/DiscoverHome";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +24,11 @@ function App() {
           <HeroHome isLoaded={isLoaded} />
           <div className="main__content-wrapper">
             <ExploreHome />
+            <TypesHome />
+            <HostHome />
+            <DiscoverHome />
           </div>
+          <Footer />
         </Route>
         {isLoaded && (
           <Route path="/signup">

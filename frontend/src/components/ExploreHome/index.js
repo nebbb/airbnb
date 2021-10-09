@@ -4,7 +4,7 @@ import "./ExploreHome.css";
 function ExploreHome() {
   return (
     <div className="explore__container">
-      <h2 className="explore-title">Explore nearby</h2>
+      <h2 className="explore-title">Featured locations</h2>
       <div className="explore-cities-container">
         <div className="city-container">
           <div className="city-img-box">

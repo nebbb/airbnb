@@ -33,7 +33,24 @@ a {
 .ul-item {
   list-style: none;
 }
+.mar-top-esm {
+  margin-top: 2.5rem;
+}
+.mar-top-sm {
+  margin-top: 5rem;
+}
+.mar-top-md {
+  margin-top: 10rem;
+}
+.mar-top-lg {
+  margin-top: 15rem;
+}
+.mar-right-sm {
+  margin-right: 1rem;
+}
 /* MAIN CONTENT */
 .main__content-wrapper {
-  padding: 4rem 8rem;
+  padding: 4rem 0;
+  max-width: 150rem;
+  margin: 0 auto;
 }

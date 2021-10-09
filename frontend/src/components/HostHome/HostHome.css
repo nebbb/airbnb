@@ -1,0 +1,34 @@
+.try-hosting__container {
+  width: 100%;
+  max-width: 160rem;
+  height: 44rem;
+  border-radius: 1.6rem;
+  display: flex;
+  align-items: center;
+  background-image: url("https://a0.muscache.com/im/pictures/2595054e-d1d9-4fde-8046-58d51fcb3164.jpg?im_w=1440");
+  background-size: cover;
+  background-position: center;
+}
+.try-hosting__text-box {
+  font-family: "Airbnb Cereal App Light";
+  color: #fff;
+  margin-left: 8rem;
+}
+.host-title {
+  font-size: 4.8rem;
+}
+.host-text {
+  margin: 1rem 0;
+  font-size: 1.6rem;
+}
+.host-btn {
+  outline: none;
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+  font-family: "Airbnb Cereal App Medium";
+  background-color: #fff;
+  padding: 1.4rem 2.4rem;
+  color: rgb(72, 72, 72);
+  border-radius: 0.8rem;
+}

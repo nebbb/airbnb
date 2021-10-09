@@ -1,0 +1,24 @@
+.footer__container {
+  background-color: #f7f7f7;
+  flex-direction: column;
+  padding: 2rem 0;
+  font-size: 1.4rem;
+}
+.first-section {
+  max-width: 150rem;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+}
+.second-section {
+  display: flex;
+  margin: 0 auto;
+
+  max-width: 150rem;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgb(212, 212, 212);
+  padding-top: 2rem;
+}
+.company span:not(:last-child) {
+  margin-right: 2rem;
+}
