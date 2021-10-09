@@ -43,10 +43,10 @@ function Navigation({ isLoaded }) {
       </div>
       <div className="header__main-user">
         <ul className="ul-item header__user">
-          <li className="header__user-item">
+          <li className="header__user-item header__user-item--hover">
             <NavLink to="/">Become a Host</NavLink>
           </li>
-          <li className="header__user-item">
+          <li className="header__user-item header__user-item--hover">
             <svg
               viewBox="0 0 16 16"
               xmlns="http://www.w3.org/2000/svg"

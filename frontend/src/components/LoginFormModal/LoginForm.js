@@ -19,32 +19,50 @@ function LoginForm() {
     );
   };
 
+  const showPassword = (e) => {
+    const passwordInput = document.querySelector(".form--pw");
+    if (e.target.checked) {
+      passwordInput.type = "text";
+    } else {
+      passwordInput.type = "password";
+    }
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="form-login-cont">
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
-        Username
-        <input
-          type="text"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Log In</button>
+      <input
+        type="text"
+        value={credential}
+        onChange={(e) => setCredential(e.target.value)}
+        required
+        placeholder="Username"
+        spellcheck="false"
+        autoComplete="false"
+        className="form--login-input"
+      />
+      <div className="show-hide-pw"></div>
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+        placeholder="Password"
+        spellcheck="false"
+        autoComplete="false"
+        className="form--login-input form--pw"
+      />
+      <div className="password-box">
+        Show password?
+        <input type="checkbox" onChange={showPassword} />
+      </div>
+      <button className="form--login--main-btn" type="submit">
+        Continue
+      </button>
     </form>
   );
 }
