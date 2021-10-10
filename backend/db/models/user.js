@@ -50,7 +50,25 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   User.associate = function (models) {
-    // associations can be defined here
+    const columnMapping = {
+      foreignKey: "userId",
+      through: "Booking",
+      otherKey: "placeId",
+    };
+    const columnMapping2 = {
+      foreignKey: "userId",
+      through: "Review",
+      otherKey: "placeId",
+    };
+    const columnMapping3 = {
+      foreignKey: "userId",
+      through: "Favourite",
+      otherKey: "placeId",
+    };
+    User.belongsToMany(models.Place, columnMapping3);
+    User.belongsToMany(models.Place, columnMapping2);
+    User.belongsToMany(models.Place, columnMapping);
+    User.hasMany(models.Place, { foreignKey: "userId" });
   };
   User.prototype.toSafeObject = function () {
     // remember, this cannot be an arrow function
@@ -84,7 +102,7 @@ module.exports = (sequelize, DataTypes) => {
       email,
       hashedPassword,
     });
-    return await User.scope('currentUser').findByPk(user.id);
+    return await User.scope("currentUser").findByPk(user.id);
   };
   return User;
 };
