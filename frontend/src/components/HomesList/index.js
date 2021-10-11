@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./HomesList.css";
 import HomeCard from "../HomeCard";
 import { loadTheHomes } from "../../store/homes";
+import { loadTheRatings } from "../../store/ratings";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Header from "../Header";
@@ -16,6 +17,7 @@ import {
 export default function HomesList() {
   const dispatch = useDispatch();
   const homes = useSelector((state) => state.homes);
+  const reviews = useSelector((state) => state.reviews);
   let homesMarkerArray = Object.values(homes);
   const [mapContainerState, setMapContainerState] = useState(null);
   const location = useLocation();
@@ -28,6 +30,7 @@ export default function HomesList() {
     leftSideScroll = document.querySelector(".homes-list-leftside");
     document.title = "Airbnb - Homes";
     dispatch(loadTheHomes());
+    dispatch(loadTheRatings());
     setMapContainerState(
       <button
         className="map__button-btn left"
@@ -36,6 +39,7 @@ export default function HomesList() {
         <i className="fas fa-chevron-left"></i>
       </button>
     );
+    console.log(reviews);
   }, [dispatch]);
 
   function leftSideMap() {

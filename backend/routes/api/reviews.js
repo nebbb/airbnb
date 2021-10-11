@@ -1,6 +1,6 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const { Review } = require("../../db/models");
+const { Review, Place } = require("../../db/models");
 
 const router = express.Router();
 
@@ -77,7 +77,11 @@ router.get(
         5 * fiveStar) /
       allReviews.length;
 
-    res.json({ avgRating: avgRating.toFixed(1), length: allReviews.length });
+    res.json({
+      avgRating: avgRating.toFixed(1),
+      length: allReviews.length,
+      placeId,
+    });
   })
 );
 
