@@ -1,5 +1,5 @@
 const LOAD_HOMES = "homes/LOAD";
-const LOAD_HOME = "home/LOAD";
+const SEARCH_HOMES = "home/SEARCH";
 
 const loadHomes = (data) => {
   return {
@@ -7,13 +7,12 @@ const loadHomes = (data) => {
     data,
   };
 };
-
-// const loadHome = (data) => {
-//   return {
-//     type: LOAD_HOME,
-//     data,
-//   };
-// };
+const searchHomes = (data) => {
+  return {
+    type: SEARCH_HOMES,
+    data,
+  };
+};
 
 export const loadTheHomes = () => async (dispatch) => {
   const response = await fetch("/api/places/all");
@@ -23,13 +22,13 @@ export const loadTheHomes = () => async (dispatch) => {
   }
 };
 
-// export const loadTheHome = (homeId) => async (dispatch) => {
-//   const response = await fetch(`/api/places/place/${homeId}`);
-//   if (response.ok) {
-//     const data = await response.json();
-//     dispatch(loadHome(data.specificPlace));
-//   }
-// };
+export const loadTheSearchedHomes = (term) => async (dispatch) => {
+  const response = await fetch(`/api/search/${term}`);
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(searchHomes(data.searchResults));
+  }
+};
 
 const initialState = {};
 
@@ -38,6 +37,13 @@ const homesReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_HOMES: {
       newState = { ...state };
+      action.data.forEach((home) => {
+        newState[home.id] = home;
+      });
+      return newState;
+    }
+    case SEARCH_HOMES: {
+      newState = {};
       action.data.forEach((home) => {
         newState[home.id] = home;
       });

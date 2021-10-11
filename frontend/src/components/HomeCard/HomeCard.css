@@ -20,7 +20,7 @@
   justify-content: space-between;
 }
 .homes-list-leftside {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .homes-list-leftside::-webkit-scrollbar {
   background-color: #fff;
@@ -54,6 +54,9 @@
 .home__card--bottom {
   display: flex;
   justify-content: space-between;
+}
+.home__card--bottomleft {
+  color: rgb(34, 34, 34);
 }
 .home__card--seperator {
   width: 3rem;

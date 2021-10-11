@@ -5,6 +5,7 @@ import { loadTheHomes } from "../../store/homes";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Header from "../Header";
+import { useLocation } from "react-router-dom";
 import {
   withScriptjs,
   withGoogleMap,
@@ -12,29 +13,16 @@ import {
   Marker,
 } from "react-google-maps";
 
-let homeArray = [{ id: 1, lat: 45.4222, long: -75.6229 }];
-let fake;
-
-function leftSideMap() {
-  console.log(fake);
-
-  return (
-    <GoogleMap defaultCenter={{ lat: 45.4222, lng: -75.6229 }} defaultZoom={10}>
-      {homeArray.map((home) => (
-        <Marker key={home.id} position={{ lat: home.lat, lng: home.long }} />
-      ))}
-    </GoogleMap>
-  );
-}
-
-const LeftSideMapWrapper = withScriptjs(withGoogleMap(leftSideMap));
-
 export default function HomesList() {
   const dispatch = useDispatch();
   const homes = useSelector((state) => state.homes);
+  let homesMarkerArray = Object.values(homes);
   const [mapContainerState, setMapContainerState] = useState(null);
+  const location = useLocation();
+  const title = location.state?.title;
   let leftSideContainer;
   let leftSideScroll;
+
   useEffect(() => {
     leftSideContainer = document.querySelector(".homes-list-leftside");
     leftSideScroll = document.querySelector(".homes-list-leftside");
@@ -48,8 +36,28 @@ export default function HomesList() {
         <i className="fas fa-chevron-left"></i>
       </button>
     );
-    fake = Object.values(homes);
   }, [dispatch]);
+
+  function leftSideMap() {
+    return (
+      <GoogleMap
+        defaultCenter={{
+          lat: 40.712776,
+          lng: -74.005974,
+        }}
+        defaultZoom={10}
+      >
+        {homesMarkerArray.map((home) => (
+          <Marker
+            key={home.id}
+            position={{ lat: Number(home.lat), lng: Number(home.long) }}
+          />
+        ))}
+      </GoogleMap>
+    );
+  }
+
+  const LeftSideMapWrapper = withScriptjs(withGoogleMap(leftSideMap));
 
   const changeMapContainer = (e) => {
     if (e.target.classList[1] === "left") {
@@ -84,7 +92,7 @@ export default function HomesList() {
         <div className="homes-list-leftside">
           <div className="homes-container">
             <p className="mar-top-esm">300+ stays</p>
-            <h2>Outdoor getaways</h2>
+            <h2>{title ? title : "All homes"}</h2>
             <div className="homes-list-filter">
               <button>Free cancellation</button>
               <button>Entire place</button>
@@ -99,7 +107,7 @@ export default function HomesList() {
                   </NavLink>
                 ))
               ) : (
-                <h1>No homes :(</h1>
+                <h1 className="mar-top-esm">No homes :(</h1>
               )}
             </div>
           </div>
