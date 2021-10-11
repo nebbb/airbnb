@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import "./HomeCard.css";
+import { useSelector } from "react-redux";
 
 export default function HomeCard({ home }) {
-  const [reviewCount, setReviewCount] = useState(0);
-  const [reviewAverage, setReviewAverage] = useState(0);
-
-  useEffect(() => {}, []);
+  const reviews = useSelector((state) => state.ratings);
 
   return (
     <div className="home__card">
@@ -26,7 +24,20 @@ export default function HomeCard({ home }) {
           </div>
         </div>
         <div className="home__card--bottom">
-          <div className="home__card--bottomleft">{reviewCount}</div>
+          <div className="home__card--bottomleft">
+            {reviews &&
+              (reviews[home.id]?.avgRating === "NaN" ? (
+                <div className="rating__container">No ratings.</div>
+              ) : (
+                <div className="rating__container">
+                  <i className="fas fa-star"></i>
+                  <p className="rating-tex">{reviews[home.id]?.avgRating}</p>
+                  <p className="rating-par">{`(${reviews[home.id]?.length} ${
+                    Number(reviews[home.id]?.length) > 1 ? "Reviews" : "Review"
+                  }) `}</p>
+                </div>
+              ))}
+          </div>
           <div className="home__card--bottomright">
             <span className="home__card--price-num">{home.price}</span>
             <span className="home__card--price-text">/ night</span>

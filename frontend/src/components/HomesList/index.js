@@ -18,6 +18,7 @@ export default function HomesList() {
   const dispatch = useDispatch();
   const homes = useSelector((state) => state.homes);
   const reviews = useSelector((state) => state.reviews);
+
   let homesMarkerArray = Object.values(homes);
   const [mapContainerState, setMapContainerState] = useState(null);
   const location = useLocation();
@@ -26,11 +27,11 @@ export default function HomesList() {
   let leftSideScroll;
 
   useEffect(() => {
+    dispatch(loadTheHomes());
+    dispatch(loadTheRatings());
     leftSideContainer = document.querySelector(".homes-list-leftside");
     leftSideScroll = document.querySelector(".homes-list-leftside");
     document.title = "Airbnb - Homes";
-    dispatch(loadTheHomes());
-    dispatch(loadTheRatings());
     setMapContainerState(
       <button
         className="map__button-btn left"
@@ -39,7 +40,6 @@ export default function HomesList() {
         <i className="fas fa-chevron-left"></i>
       </button>
     );
-    console.log(reviews);
   }, [dispatch]);
 
   function leftSideMap() {

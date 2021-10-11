@@ -12,11 +12,14 @@ export const loadTheRatings = () => async (dispatch, getState) => {
   let allRatingsArray = [];
   const allPlaces = await fetch(`/api/places/all`);
   const allPlacesArray = await allPlaces.json();
-  allPlacesArray.allPlaces.forEach(async (place) => {
-    const currentPlaceRating = await fetch(`/api/reviews/rating/${place.id}`);
+
+  for (const iterator of allPlacesArray.allPlaces) {
+    const currentPlaceRating = await fetch(
+      `/api/reviews/rating/${iterator.id}`
+    );
     const data = await currentPlaceRating.json();
     allRatingsArray.push(data);
-  });
+  }
   dispatch(loadRatings(allRatingsArray));
 };
 
@@ -27,8 +30,8 @@ const ratingsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_RATINGS: {
       newState = { ...state };
-      action.data.forEach((home) => {
-        newState[home.id] = home;
+      action.data.forEach((rating) => {
+        newState[rating.placeId] = rating;
       });
       return newState;
     }
