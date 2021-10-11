@@ -1,0 +1,96 @@
+.home__card {
+  cursor: pointer;
+  display: flex;
+  gap: 1.4rem;
+  height: 25rem;
+  padding: 2rem 0;
+  border-top: 1px solid rgb(235, 235, 235) !important;
+}
+.home__card--leftside {
+  width: 30rem;
+  background-image: url("https://a0.muscache.com/im/pictures/3b767a00-9753-4b7c-8413-a24e32f316b7.jpg?im_w=720");
+  background-position: center;
+  background-size: cover;
+  border-radius: 1.2rem;
+}
+.home__card--rightside {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.homes-list-leftside {
+  overflow-y: scroll;
+}
+.homes-list-leftside::-webkit-scrollbar {
+  background-color: #fff;
+  width: 16px;
+}
+
+.homes-list-leftside::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+.homes-list-leftside::-webkit-scrollbar-track:hover {
+  background-color: #f4f4f4;
+}
+
+.homes-list-leftside::-webkit-scrollbar-thumb {
+  background-color: #babac0;
+  border-radius: 16px;
+  border: 5px solid #fff;
+}
+.homes-list-leftside::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a5;
+  border: 4px solid #f4f4f4;
+}
+
+.homes-list-leftside::-webkit-scrollbar-button {
+  display: none;
+}
+.home__card--top {
+  display: flex;
+  justify-content: space-between;
+}
+.home__card--bottom {
+  display: flex;
+  justify-content: space-between;
+}
+.home__card--seperator {
+  width: 3rem;
+  height: 0.1rem;
+  background-color: rgb(235, 235, 235);
+}
+.home__card--taglne {
+  font-size: 1.4rem;
+  color: rgb(113, 113, 113);
+  font-family: "Airbnb Cereal App Light";
+}
+.home__card--title {
+  font-size: 1.8rem;
+  font-family: "Airbnb Cereal App Light";
+  color: rgb(34, 34, 34);
+}
+.home__card--info {
+  font-size: 1.4rem;
+  color: rgb(113, 113, 113);
+  font-family: "Airbnb Cereal App Light";
+}
+.home__card--price-num {
+  color: rgb(34, 34, 34);
+  font-family: "Airbnb Cereal App Book";
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+.home__card--price-text {
+  color: rgb(34, 34, 34);
+  font-family: "Airbnb Cereal App Light";
+  font-size: 1.8rem;
+}
+.home__card--topleft > * {
+  margin-bottom: 0.8rem;
+}
+.home__card--topright button {
+  outline: none;
+  border: none;
+  background: none;
+}

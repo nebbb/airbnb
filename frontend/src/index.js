@@ -32,9 +32,4 @@ function Root() {
   );
 }
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Root />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+ReactDOM.render(<Root />, document.getElementById("root"));

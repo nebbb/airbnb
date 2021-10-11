@@ -41,7 +41,7 @@ function LoginForm() {
         onChange={(e) => setCredential(e.target.value)}
         required
         placeholder="Username"
-        spellcheck="false"
+        spellCheck="false"
         autoComplete="false"
         className="form--login-input"
       />
@@ -52,7 +52,7 @@ function LoginForm() {
         onChange={(e) => setPassword(e.target.value)}
         required
         placeholder="Password"
-        spellcheck="false"
+        spellCheck="false"
         autoComplete="false"
         className="form--login-input form--pw"
       />

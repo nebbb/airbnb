@@ -12,7 +12,7 @@ export default function Footer() {
           <span>Terms</span>
         </div>
         <div className="extra">
-          <i class="fab fa-github"></i>
+          <i className="fab fa-github"></i>
         </div>
       </div>
     </div>

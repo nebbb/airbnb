@@ -9,6 +9,7 @@ import TypesHome from "./components/TypesHome";
 import HostHome from "./components/HostHome";
 import DiscoverHome from "./components/DiscoverHome";
 import Footer from "./components/Footer";
+import HomesList from "./components/HomesList";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,9 @@ function App() {
             <DiscoverHome />
           </div>
           <Footer />
+        </Route>
+        <Route path="/homes">
+          <HomesList />
         </Route>
         {isLoaded && (
           <Route path="/signup">

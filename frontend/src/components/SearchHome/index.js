@@ -1,11 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./SearchHome.css";
+import { useEffect, useState } from "react";
 
 function SearchHome() {
-  const seperatorOne = document.querySelector(".search-seperator--1");
-  const seperatorTwo = document.querySelector(".search-seperator--2");
-  const seperatorThree = document.querySelector(".search-seperator--3");
+  const [seperatorOne, setSeperatorOne] = useState("");
+  const [seperatorTwo, setSeperatorTwo] = useState("");
+  const [seperatorThree, setSeperatorThree] = useState("");
+
+  useEffect(() => {
+    setSeperatorOne(document.querySelector(".search-seperator--1"));
+    setSeperatorTwo(document.querySelector(".search-seperator--2"));
+    setSeperatorThree(document.querySelector(".search-seperator--3"));
+  }, []);
 
   return (
     <div className="hero__search-main">
