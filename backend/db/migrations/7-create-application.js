@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("Reviews", {
+    return queryInterface.createTable("Applications", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,35 +10,25 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { model: "Users" },
       },
-      placeId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { model: "Places" },
-      },
-      review: {
+      reason: {
         type: Sequelize.TEXT,
-        allowNull: false,
       },
-      rating: {
-        type: Sequelize.STRING,
-        allowNull: false,
+      type: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,
-        defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        defaultValue: Sequelize.fn("now"),
         type: Sequelize.DATE,
       },
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("Reviews");
+    return queryInterface.dropTable("Applications");
   },
 };

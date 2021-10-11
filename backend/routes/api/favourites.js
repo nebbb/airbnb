@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Get all favourites from a specific user
 router.get(
-  "/favourites/:userId",
+  "/:userId",
   asyncHandler(async (req, res) => {
     const userId = req.params.userId;
     const allFavourites = await Favourite.findAll({

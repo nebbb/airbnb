@@ -4,9 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     "Place",
     {
       userId: DataTypes.INTEGER,
-      userId: DataTypes.INTEGER,
       name: DataTypes.STRING(100),
       description: DataTypes.TEXT,
+      address: DataTypes.TEXT,
       city: DataTypes.STRING(100),
       state: DataTypes.STRING(100),
       info: DataTypes.STRING(100),

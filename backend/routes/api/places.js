@@ -1,6 +1,6 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const { Place } = require("../../db/models");
+const { Place, User, Review } = require("../../db/models");
 
 const router = express.Router();
 
@@ -8,7 +8,9 @@ const router = express.Router();
 router.get(
   "/all",
   asyncHandler(async (req, res) => {
-    const allPlaces = await Place.findAll();
+    const allPlaces = await Place.findAll({
+      include: [User],
+    });
     return res.json({ allPlaces });
   })
 );

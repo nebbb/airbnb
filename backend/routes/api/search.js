@@ -1,20 +1,23 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const { Image } = require("../../db/models");
+const { Place } = require("../../db/models");
+const { Op } = require("sequelize");
 
 const router = express.Router();
 
 // Get all images from a specific place
 router.get(
-  "/:placeId",
+  "/:term",
   asyncHandler(async (req, res) => {
-    const placeId = req.params.placeId;
-    const allImages = await Image.findAll({
+    const term = req.params.term;
+    const searchResults = await Place.findAll({
       where: {
-        placeId,
+        name: {
+          [Op.iLike]: `%${term}%`,
+        },
       },
     });
-    return res.json({ allImages });
+    return res.json({ searchResults });
   })
 );
 

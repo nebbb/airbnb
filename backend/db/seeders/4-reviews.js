@@ -19,11 +19,13 @@ module.exports = {
           userId: 1,
           placeId: 1,
           review: "Great!!!",
+          rating: "4",
         },
         {
           userId: 1,
           placeId: 2,
           review: "Terrible!!!",
+          rating: "1",
         },
       ],
       {}
