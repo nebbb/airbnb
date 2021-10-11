@@ -17,7 +17,6 @@ import {
 export default function HomesList() {
   const dispatch = useDispatch();
   const homes = useSelector((state) => state.homes);
-  const reviews = useSelector((state) => state.reviews);
 
   let homesMarkerArray = Object.values(homes);
   const [mapContainerState, setMapContainerState] = useState(null);

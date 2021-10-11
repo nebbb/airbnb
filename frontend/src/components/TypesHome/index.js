@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { NavLink, Link } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import "./TypesHome.css";
 
 function TypesHome() {

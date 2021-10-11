@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import "./HeroHome.css";
 import Navigation from "../Navigation";
 import SearchHome from "../SearchHome";

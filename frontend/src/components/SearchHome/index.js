@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import "./SearchHome.css";
 import { useEffect, useState } from "react";
 

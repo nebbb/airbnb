@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React from "react";
 import "./HomeCard.css";
 import { useSelector } from "react-redux";
 
