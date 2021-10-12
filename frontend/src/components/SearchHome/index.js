@@ -1,26 +1,22 @@
 import React from "react";
 import "./SearchHome.css";
-import { useEffect, useState } from "react";
+import { useRef } from "react";
 
 function SearchHome() {
-  const [seperatorOne, setSeperatorOne] = useState("");
-  const [seperatorTwo, setSeperatorTwo] = useState("");
-  const [seperatorThree, setSeperatorThree] = useState("");
-
-  useEffect(() => {
-    setSeperatorOne(document.querySelector(".search-seperator--1"));
-    setSeperatorTwo(document.querySelector(".search-seperator--2"));
-    setSeperatorThree(document.querySelector(".search-seperator--3"));
-  }, []);
+  const seperatorOne = useRef(null);
+  const seperatorTwo = useRef(null);
+  const seperatorThree = useRef(null);
 
   return (
     <div className="hero__search-main">
       <form className="search-form">
         <div
           className="input-box input-box--first"
-          onMouseOut={(e) => (seperatorOne.style.backgroundColor = "#cecece")}
+          onMouseOut={(e) =>
+            (seperatorOne.current.style.backgroundColor = "#cecece")
+          }
           onMouseOver={(e) =>
-            (seperatorOne.style.backgroundColor = "transparent")
+            (seperatorOne.current.style.backgroundColor = "transparent")
           }
         >
           <p>Location</p>
@@ -29,44 +25,53 @@ function SearchHome() {
             placeholder="Where are you going?"
           ></input>
         </div>
-        <div className="search-seperator search-seperator--1"></div>
+        <div
+          ref={seperatorOne}
+          className="search-seperator search-seperator--1"
+        ></div>
         <div
           className="input-box input-box--second"
           onMouseOut={(e) => {
-            seperatorOne.style.backgroundColor = "#cecece";
-            seperatorTwo.style.backgroundColor = "#cecece";
+            seperatorOne.current.style.backgroundColor = "#cecece";
+            seperatorTwo.current.style.backgroundColor = "#cecece";
           }}
           onMouseOver={(e) => {
-            seperatorOne.style.backgroundColor = "transparent";
-            seperatorTwo.style.backgroundColor = "transparent";
+            seperatorOne.current.style.backgroundColor = "transparent";
+            seperatorTwo.current.style.backgroundColor = "transparent";
           }}
         >
           <p>Check in</p>
           <input className="search-input" placeholder="Add dates"></input>
         </div>
-        <div className="search-seperator search-seperator--2"></div>
+        <div
+          ref={seperatorTwo}
+          className="search-seperator search-seperator--2"
+        ></div>
         <div
           className="input-box input-box--third"
           onMouseOut={(e) => {
-            seperatorThree.style.backgroundColor = "#cecece";
-            seperatorTwo.style.backgroundColor = "#cecece";
+            seperatorThree.current.style.backgroundColor = "#cecece";
+            seperatorTwo.current.style.backgroundColor = "#cecece";
           }}
           onMouseOver={(e) => {
-            seperatorThree.style.backgroundColor = "transparent";
-            seperatorTwo.style.backgroundColor = "transparent";
+            seperatorThree.current.style.backgroundColor = "transparent";
+            seperatorTwo.current.style.backgroundColor = "transparent";
           }}
         >
           <p>Check out</p>
           <input className="search-input" placeholder="Add dates"></input>
         </div>
-        <div className="search-seperator search-seperator--3"></div>
+        <div
+          ref={seperatorThree}
+          className="search-seperator search-seperator--3"
+        ></div>
         <div
           className="input-box--last input-box--fourth"
           onMouseOut={(e) => {
-            seperatorThree.style.backgroundColor = "#cecece";
+            seperatorThree.current.style.backgroundColor = "#cecece";
           }}
           onMouseOver={(e) => {
-            seperatorThree.style.backgroundColor = "transparent";
+            seperatorThree.current.style.backgroundColor = "transparent";
           }}
         >
           <div className="input-box">

@@ -51,6 +51,11 @@
   top: 15;
   left: 15;
 }
+.map__button2 {
+  position: absolute;
+  bottom: 15;
+  right: 15;
+}
 .map__button-btn {
   font-family: sans-serif;
   cursor: pointer;
@@ -76,5 +81,11 @@
   display: none;
 }
 .gm-svpc {
+  display: none;
+}
+.gmnoprint {
+  display: none;
+}
+.gm-style-cc {
   display: none;
 }

@@ -13,32 +13,31 @@ import {
   GoogleMap,
   Marker,
 } from "react-google-maps";
+import { useRef } from "react";
 
 export default function HomesList() {
   const dispatch = useDispatch();
   const homes = useSelector((state) => state.homes);
 
   let homesMarkerArray = Object.values(homes);
-  const [mapContainerState, setMapContainerState] = useState(null);
+  const [mapContainerState, setMapContainerState] = useState(
+    <button
+      className="map__button-btn left"
+      onClick={(e) => changeMapContainer(e)}
+    >
+      <i className="fas fa-chevron-left left"></i>
+    </button>
+  );
+
   const location = useLocation();
   const title = location.state?.title;
-  let leftSideContainer;
-  let leftSideScroll;
+
+  const leftSideContainer = useRef(null);
 
   useEffect(() => {
     dispatch(loadTheHomes());
     dispatch(loadTheRatings());
-    leftSideContainer = document.querySelector(".homes-list-leftside");
-    leftSideScroll = document.querySelector(".homes-list-leftside");
     document.title = "Airbnb - Homes";
-    setMapContainerState(
-      <button
-        className="map__button-btn left"
-        onClick={(e) => changeMapContainer(e)}
-      >
-        <i className="fas fa-chevron-left"></i>
-      </button>
-    );
   }, [dispatch]);
 
   function leftSideMap() {
@@ -63,27 +62,27 @@ export default function HomesList() {
   const LeftSideMapWrapper = withScriptjs(withGoogleMap(leftSideMap));
 
   const changeMapContainer = (e) => {
-    if (e.target.classList[1] === "left") {
-      leftSideContainer.style.width = "0px";
-      leftSideScroll.style.padding = "0px";
+    if (e.target.classList[1] === "left" || e.target.classList[2] === "left") {
+      leftSideContainer.current.style.width = "0px";
+      leftSideContainer.current.style.padding = "0px";
       setMapContainerState(
         <button
           className="map__button-btn right"
           onClick={(e) => changeMapContainer(e)}
         >
-          <i className="fas fa-chevron-right"></i>
+          <i className="fas fa-chevron-right right"></i>
           <p>Show List</p>
         </button>
       );
     } else {
-      leftSideContainer.style.width = "76rem";
-      leftSideScroll.style.padding = "2rem";
+      leftSideContainer.current.style.width = "76rem";
+      leftSideContainer.current.style.padding = "2rem";
       setMapContainerState(
         <button
           className="map__button-btn left"
           onClick={(e) => changeMapContainer(e)}
         >
-          <i className="fas fa-chevron-left"></i>
+          <i className="fas fa-chevron-left left"></i>
         </button>
       );
     }
@@ -92,7 +91,7 @@ export default function HomesList() {
     <>
       <Header />
       <div className="homes-list__container">
-        <div className="homes-list-leftside">
+        <div ref={leftSideContainer} className="homes-list-leftside">
           <div className="homes-container">
             <p className="mar-top-esm">300+ stays</p>
             <h2>{title ? title : "All homes"}</h2>
@@ -126,6 +125,7 @@ export default function HomesList() {
               mapElement={<div style={{ height: "100%" }} />}
             />
             <div className="map__button">{mapContainerState}</div>
+            <div className="map__button2">{mapContainerState}</div>
           </div>
         </div>
       </div>
