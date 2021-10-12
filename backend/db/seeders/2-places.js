@@ -24,8 +24,8 @@ module.exports = {
           state: "Maryland",
           info: "2 beds",
           price: "$200",
-          lat: "102",
-          long: "602",
+          lat: "43.6",
+          long: "-79.3",
         },
         {
           userId: 1,
@@ -36,8 +36,8 @@ module.exports = {
           state: "New York",
           info: "21 beds",
           price: "$2600",
-          lat: "302",
-          long: "902",
+          lat: "42.6",
+          long: "-77.3",
         },
         {
           userId: 1,
@@ -48,8 +48,8 @@ module.exports = {
           state: "New York",
           info: "21 beds",
           price: "$26",
-          lat: "302",
-          long: "902",
+          lat: "41.6",
+          long: "-78.3",
         },
       ],
       {}
