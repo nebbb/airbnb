@@ -23,6 +23,14 @@ module.exports = {
           userId: 1,
           placeId: 2,
         },
+        {
+          userId: 4,
+          placeId: 1,
+        },
+        {
+          userId: 4,
+          placeId: 2,
+        },
       ],
       {}
     );

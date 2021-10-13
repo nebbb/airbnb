@@ -15,11 +15,14 @@ import {
 } from "@react-google-maps/api";
 import { useRef } from "react";
 import GMStyles from "./GMJson";
+import { filterHomes } from "../../store/homes";
+import { loadTheFavourites } from "../../store/favoutites";
 
 export default function HomesList() {
   const dispatch = useDispatch();
   const homes = useSelector((state) => state.homes);
   const reviews = useSelector((state) => state.ratings);
+  const currUser = useSelector((state) => state.session.user);
 
   const [currentSelectedHome, setCurrentSelectedHome] = useState(null);
   let allMarkers = Object.values(homes);
@@ -41,6 +44,10 @@ export default function HomesList() {
 
   const leftSideContainer = useRef(null);
 
+
+  useEffect(() => {
+    if (currUser?.id) dispatch(loadTheFavourites(currUser?.id));
+  }, [currUser]);
   useEffect(() => {
     dispatch(loadTheHomes());
     dispatch(loadTheRatings());
@@ -48,7 +55,7 @@ export default function HomesList() {
   }, [dispatch]);
 
   // Google map component
-  const { isLoaded, loadError } = useLoadScript({
+  const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyB8XDkPLhgFSJy4rHox3c2BrHNZowRtTLU",
   });
 
@@ -79,6 +86,56 @@ export default function HomesList() {
     }
   };
 
+  const filteredSelect = (e, type) => {
+    if (!e.target.classList.contains("selected__filter-btn")) {
+      e.target.classList.add("selected__filter-btn");
+      // ADD THE FILTER
+      // switch (type) {
+      //   case 1: {
+      //     dispatch(filterHomes({ num: 6 }));
+      //     return;
+      //   }
+      //   case 2: {
+      //     dispatch(filterHomes({ num: 6 }));
+      //     return;
+      //   }
+      //   case 3: {
+      //     dispatch(filterHomes({ num: 6 }));
+      //     return;
+      //   }
+      //   case 4: {
+      //     dispatch(filterHomes({ num: 6 }));
+      //     return;
+      //   }
+      //   default:
+      //     return;
+      // }
+    } else {
+      e.target.classList.toggle("selected__filter-btn");
+      // REMOVE THE FILTER
+      // switch (type) {
+      //   case 1: {
+      //     dispatch(filterHomes({ num: 6 }));
+      //     return;
+      //   }
+      //   case 2: {
+      //     dispatch(filterHomes({ num: 6 }));
+      //     return;
+      //   }
+      //   case 3: {
+      //     dispatch(filterHomes({ num: 6 }));
+      //     return;
+      //   }
+      //   case 4: {
+      //     dispatch(filterHomes({ num: 6 }));
+      //     return;
+      //   }
+      //   default:
+      //     return;
+      // }
+    }
+  };
+
   return (
     <>
       <Header />
@@ -88,10 +145,14 @@ export default function HomesList() {
             <p className="mar-top-esm">300+ stays</p>
             <h2>{title ? title : "All homes"}</h2>
             <div className="homes-list-filter">
-              <button>Free cancellation</button>
-              <button>Entire place</button>
-              <button>Price</button>
-              <button>Time posted</button>
+              <button onClick={(e) => filteredSelect(e, 1)}>
+                Free cancellation
+              </button>
+              <button onClick={(e) => filteredSelect(e, 2)}>
+                Entire place
+              </button>
+              <button onClick={(e) => filteredSelect(e, 3)}>Price</button>
+              <button onClick={(e) => filteredSelect(e, 4)}>Time posted</button>
             </div>
             <div className="homes-list-flex">
               {homes ? (
@@ -115,7 +176,10 @@ export default function HomesList() {
                 mapContainerStyle={{ width: "100%", height: "100%" }}
                 zoom={10}
                 center={
-                  allMarkers[0] && { lat: +homes[1]?.lat, lng: +homes[1]?.long }
+                  allMarkers[0] && {
+                    lat: +homes[Object.keys(homes)[0]]?.lat,
+                    lng: +homes[Object.keys(homes)[0]]?.long,
+                  }
                 }
                 options={options}
               >

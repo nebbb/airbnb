@@ -1,0 +1,21 @@
+.application-form__container {
+  width: 40rem;
+  height: 40rem;
+  padding: 2rem;
+  background-color: orangered;
+}
+.application-form__main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+.application-form__input {
+  width: 100%;
+  outline: none;
+  border: none;
+}
+.application-form__button {
+  border: none;
+}

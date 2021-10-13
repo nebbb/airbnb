@@ -49,6 +49,10 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
       },
+      type: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
       createdAt: {
         defaultValue: Sequelize.fn("now"),
         allowNull: false,

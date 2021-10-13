@@ -30,7 +30,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button
+      <div
         className="modal__outer-container modal__outer-container--drop"
         onClick={openMenu}
       >
@@ -69,7 +69,7 @@ function ProfileButton({ user }) {
             </li>
           </ul>
         )}
-      </button>
+      </div>
     </>
   );
 }

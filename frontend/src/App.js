@@ -10,6 +10,8 @@ import HostHome from "./components/HostHome";
 import DiscoverHome from "./components/DiscoverHome";
 import Footer from "./components/Footer";
 import HomesList from "./components/HomesList";
+import ApplicationForm from "./components/ApplicationForm";
+import HomeForm from "./components/HomeForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +35,12 @@ function App() {
         </Route>
         <Route path="/homes">
           <HomesList />
+        </Route>
+        <Route path="/application">
+          <ApplicationForm />
+        </Route>
+        <Route path="/create">
+          <HomeForm />
         </Route>
         {isLoaded && (
           <Route path="/signup">

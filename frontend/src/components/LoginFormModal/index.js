@@ -12,7 +12,7 @@ function LoginFormModal() {
         className="modal__outer-container"
         onClick={() => {
           setShowModal(true);
-          document.body.style.overflow = "hidden";
+          document.body.style.overflowY = "hidden";
         }}
       >
         <div className="modal__inner-container">
@@ -46,7 +46,7 @@ function LoginFormModal() {
         <Modal
           onClose={() => {
             setShowModal(false);
-            document.body.style.overflow = "auto";
+            document.body.style.overflowY = "auto";
           }}
         >
           <div className="modal-header">
@@ -54,7 +54,7 @@ function LoginFormModal() {
               className="close-inner-modal"
               onClick={() => {
                 setShowModal(false);
-                document.body.style.overflow = "auto";
+                document.body.style.overflowY = "auto";
               }}
             >
               <svg

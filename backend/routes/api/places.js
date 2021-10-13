@@ -39,4 +39,12 @@ router.get(
   })
 );
 
+router.post(
+  "/",
+  asyncHandler(async (req, res) => {
+    const newPlace = await Place.create(req.body);
+    return res.json(newPlace);
+  })
+);
+
 module.exports = router;

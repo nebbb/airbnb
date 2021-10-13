@@ -26,6 +26,7 @@ module.exports = {
           price: "$200",
           lat: "43.6",
           long: "-79.3",
+          type: "Sandoon",
         },
         {
           userId: 1,
@@ -38,6 +39,7 @@ module.exports = {
           price: "$2600",
           lat: "42.6",
           long: "-77.3",
+          type: "Home",
         },
         {
           userId: 1,
@@ -50,6 +52,7 @@ module.exports = {
           price: "$26",
           lat: "41.6",
           long: "-78.3",
+          type: "Igloo",
         },
       ],
       {}
