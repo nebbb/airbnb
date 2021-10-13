@@ -1,15 +1,19 @@
-import React, { useState } from "react";
-import "./HomeForm.css";
+import React, { useEffect, useState } from "react";
+import "./EditHome.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { addAHome } from "../../store/homes";
+import { updateAHome } from "../../store/homes";
+import { loadTheHomes } from "../../store/homes";
+import { useParams } from "react-router";
 
-export default function HomeForm() {
+export default function EditHome() {
+  const { homeId } = useParams();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user);
+  const home = useSelector((state) => state.homes[homeId]);
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
   const [info, setInfo] = useState("");
   const [price, setPrice] = useState("");
   const [lat, setLat] = useState("");
@@ -19,19 +23,13 @@ export default function HomeForm() {
   const [imgTwo, setImgTwo] = useState("");
   const [imgThree, setImgThree] = useState("");
 
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.session.user);
   let history = useHistory();
 
   const onSubmit = async (e) => {
     e.preventDefault();
     const payload = {
-      userId: user.id,
       name,
       description,
-      address,
-      city,
-      state,
       info,
       price,
       lat,
@@ -41,8 +39,8 @@ export default function HomeForm() {
       picTwo: imgTwo,
       picThree: imgThree,
     };
-    const theHome = await dispatch(addAHome(payload));
-    if (theHome) history.push("/homes");
+    const theHome = await dispatch(updateAHome(user.id, payload));
+    if (theHome) history.push(`/homes/${homeId}`);
   };
 
   return (
@@ -64,39 +62,6 @@ export default function HomeForm() {
           <input
             onChange={(e) => setDescription(e.target.value)}
             value={description}
-            className="home-form__input"
-            autoComplete="false"
-            spellCheck="false"
-            required
-          />
-        </label>
-        <label>
-          Address
-          <input
-            onChange={(e) => setAddress(e.target.value)}
-            value={address}
-            className="home-form__input"
-            autoComplete="false"
-            spellCheck="false"
-            required
-          />
-        </label>
-        <label>
-          City
-          <input
-            onChange={(e) => setCity(e.target.value)}
-            value={city}
-            className="home-form__input"
-            autoComplete="false"
-            spellCheck="false"
-            required
-          />
-        </label>
-        <label>
-          State
-          <input
-            onChange={(e) => setState(e.target.value)}
-            value={state}
             className="home-form__input"
             autoComplete="false"
             spellCheck="false"
@@ -191,7 +156,7 @@ export default function HomeForm() {
             required
           />
         </label>
-        <button className="home-form__button">Add home!</button>
+        <button className="home-form__button">Edit home!</button>
       </form>
     </div>
   );

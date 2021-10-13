@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       lat: DataTypes.TEXT,
       long: DataTypes.TEXT,
       type: DataTypes.TEXT,
+      picOne: DataTypes.TEXT,
+      picTwo: DataTypes.TEXT,
+      picThree: DataTypes.TEXT,
     },
     {}
   );
@@ -34,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: "userId",
     };
 
-    Place.belongsToMany(models.User, columnMapping3);
+    // Place.belongsToMany(models.User, columnMapping3);
     // Place.belongsToMany(models.User, columnMapping2);
     // Place.belongsToMany(models.User, columnMapping);
     Place.belongsTo(models.User, { foreignKey: "userId" });

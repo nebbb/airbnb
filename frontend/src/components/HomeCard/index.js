@@ -34,7 +34,12 @@ export default function HomeCard({ home }) {
 
   return (
     <div className="home__card">
-      <div className="home__card--leftside"></div>
+      <div
+        style={{
+          backgroundImage: `url(${home.picOne})`,
+        }}
+        className="home__card--leftside"
+      ></div>
       <div className="home__card--rightside">
         <div className="home__card--top">
           <div className="home__card--topleft">

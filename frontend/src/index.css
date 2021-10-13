@@ -54,4 +54,8 @@ a {
   max-width: 150rem;
   margin: 0 auto;
 }
-
+.main__content-wrapper--tighter {
+  padding: 2rem 0;
+  max-width: 100rem;
+  margin: 0 auto;
+}

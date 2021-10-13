@@ -3,6 +3,8 @@ const LOAD_HOMES = "homes/LOAD";
 const SEARCH_HOMES = "homes/SEARCH";
 const LOAD_ONE = "homes/ONE";
 const FILTER_HOMES = "homes/FILTER";
+const UPDATE_HOME = "homes/update";
+const REMOVE_HOME = "homes/REMOVE";
 
 export const filterHomes = (data) => {
   return {
@@ -14,6 +16,19 @@ export const filterHomes = (data) => {
 const loadHomes = (data) => {
   return {
     type: LOAD_HOMES,
+    data,
+  };
+};
+const updateHomes = (data) => {
+  return {
+    type: UPDATE_HOME,
+    data,
+  };
+};
+
+const removeHomes = (data) => {
+  return {
+    type: REMOVE_HOME,
     data,
   };
 };
@@ -50,6 +65,30 @@ export const addAHome = (data) => async (dispatch) => {
   return dataA;
 };
 
+export const updateAHome = (id, data) => async (dispatch) => {
+  const response = await csrfFetch(`/api/places/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  const dataA = await response.json();
+  dispatch(updateHomes(dataA));
+  return dataA;
+};
+
+export const removeAHome = (id) => async (dispatch) => {
+  const response = await csrfFetch(`/api/places/${id}`, {
+    method: "DELETE",
+  });
+  const dataA = await response.json();
+  dispatch(removeHomes(dataA));
+  console.log(dataA);
+
+  return dataA;
+};
+
 export const loadTheSearchedHomes = (term) => async (dispatch) => {
   const response = await fetch(`/api/search/${term}`);
   if (response.ok) {
@@ -80,6 +119,16 @@ const homesReducer = (state = initialState, action) => {
       action.data.forEach((home) => {
         newState[home.id] = home;
       });
+      return newState;
+    }
+    case REMOVE_HOME: {
+      newState = { ...state };
+      delete newState[action.data.id];
+      return newState;
+    }
+    case UPDATE_HOME: {
+      newState = { ...state };
+      newState[action.data.id] = action.data;
       return newState;
     }
     case FILTER_HOMES: {

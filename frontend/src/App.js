@@ -12,6 +12,9 @@ import Footer from "./components/Footer";
 import HomesList from "./components/HomesList";
 import ApplicationForm from "./components/ApplicationForm";
 import HomeForm from "./components/HomeForm";
+import SingleHome from "./components/SingleHome";
+import Header from "./components/Header";
+import EditHome from "./components/EditHome";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,8 +36,18 @@ function App() {
           </div>
           <Footer />
         </Route>
-        <Route path="/homes">
+        <Route path="/homes/:homeId/edit">
+          <EditHome />
+        </Route>
+        <Route exact path="/homes">
           <HomesList />
+        </Route>
+        <Route path="/homes/:homeId">
+          <Header />
+          <div className="main__content-wrapper--tighter">
+            <SingleHome />
+          </div>
+          <Footer />
         </Route>
         <Route path="/application">
           <ApplicationForm />

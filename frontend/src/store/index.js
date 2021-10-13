@@ -4,12 +4,14 @@ import sessionReducer from "./session";
 import homesReducer from "./homes";
 import ratingsReducer from "./ratings";
 import favouritesReducer from "./favoutites";
+import reviewsReducer from "./reviews";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   homes: homesReducer,
   ratings: ratingsReducer,
   favourites: favouritesReducer,
+  reviews: reviewsReducer,
 });
 
 let enhancer;

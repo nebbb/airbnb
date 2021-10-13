@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 
 function ProfileButton({ user }) {
@@ -28,6 +28,8 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
   };
 
+  console.log(user);
+
   return (
     <>
       <div
@@ -46,8 +48,13 @@ function ProfileButton({ user }) {
           >
             <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"></path>
           </svg>
-
-          <svg
+          <div
+            style={{
+              backgroundImage: `url(${user.profilePicture})`,
+            }}
+            className="profile-header-img"
+          ></div>
+          {/* <svg
             viewBox="0 0 32 32"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
@@ -58,7 +65,7 @@ function ProfileButton({ user }) {
             fill="rgb(113, 113, 113)"
           >
             <path d="m16 .7c-8.437 0-15.3 6.863-15.3 15.3s6.863 15.3 15.3 15.3 15.3-6.863 15.3-15.3-6.863-15.3-15.3-15.3zm0 28c-4.021 0-7.605-1.884-9.933-4.81a12.425 12.425 0 0 1 6.451-4.4 6.507 6.507 0 0 1 -3.018-5.49c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5a6.513 6.513 0 0 1 -3.019 5.491 12.42 12.42 0 0 1 6.452 4.4c-2.328 2.925-5.912 4.809-9.933 4.809z"></path>
-          </svg>
+          </svg> */}
         </div>
         {showMenu && (
           <ul className="profile-dropdown">

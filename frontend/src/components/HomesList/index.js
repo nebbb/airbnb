@@ -44,14 +44,12 @@ export default function HomesList() {
 
   const leftSideContainer = useRef(null);
 
-
   useEffect(() => {
     if (currUser?.id) dispatch(loadTheFavourites(currUser?.id));
   }, [currUser]);
   useEffect(() => {
     dispatch(loadTheHomes());
     dispatch(loadTheRatings());
-    document.title = "Airbnb - Homes";
   }, [dispatch]);
 
   // Google map component
@@ -214,7 +212,7 @@ export default function HomesList() {
                       <div className="marker__top">
                         <img
                           className="marker--img"
-                          src="https://a0.muscache.com/im/pictures/3b767a00-9753-4b7c-8413-a24e32f316b7.jpg?im_w=720"
+                          src={currentSelectedHome.picOne}
                           alt="Home"
                         />
                       </div>

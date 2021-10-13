@@ -32,6 +32,7 @@ export default function ApplicationForm() {
             className="application-form__input"
             autoComplete="false"
             spellCheck="false"
+            required
           />
         </label>
         <label>
@@ -42,6 +43,7 @@ export default function ApplicationForm() {
             className="application-form__input"
             autoComplete="false"
             spellCheck="false"
+            required
           />
         </label>
         <button className="application-form__button">

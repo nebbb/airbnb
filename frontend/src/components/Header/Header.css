@@ -4,9 +4,28 @@
   justify-content: space-around;
   align-items: center;
   box-shadow: rgb(0, 0, 0, 0.08) 0px 1px 12px;
+
 }
 .main-header__logo {
 }
 .main-header-logo {
   height: 3rem;
+}
+.main-header__search {
+}
+.main-header-search {
+  font-family: "Airbnb Cereal App Book";
+  color: #222222;
+  padding: 1.2rem 1.4rem;
+  border-radius: 100px;
+  border: none;
+  outline: none;
+  border: 1px solid #dddddd;
+}
+.single-home-img-1 {
+  
+}
+.single-home-img-2 {
+}
+.single-home-img-3 {
 }

@@ -53,6 +53,18 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
       },
+      picOne: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      picTwo: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      picThree: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
       createdAt: {
         defaultValue: Sequelize.fn("now"),
         allowNull: false,

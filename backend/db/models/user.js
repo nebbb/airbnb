@@ -18,6 +18,11 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      profilePicture: {
+        type: DataTypes.STRING,
+        defaultValue:
+          "https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg",
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -66,15 +71,16 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: "placeId",
     };
 
-    User.belongsToMany(models.Place, columnMapping3);
+    // User.belongsToMany(models.Place, columnMapping3);
     // User.belongsToMany(models.Place, columnMapping2);
     // User.belongsToMany(models.Place, columnMapping);
     User.hasMany(models.Place, { foreignKey: "userId" });
+    User.hasMany(models.Review, { foreignKey: "userId" });
   };
   User.prototype.toSafeObject = function () {
     // remember, this cannot be an arrow function
-    const { id, username, email } = this; // context will be the User instance
-    return { id, username, email };
+    const { id, username, email, profilePicture } = this; // context will be the User instance
+    return { id, username, email, profilePicture };
   };
   User.prototype.validatePassword = function (password) {
     return bcrypt.compareSync(password, this.hashedPassword.toString());

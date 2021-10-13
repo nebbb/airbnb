@@ -1,6 +1,6 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const { Review, Place } = require("../../db/models");
+const { Review, Place, User } = require("../../db/models");
 
 const router = express.Router();
 
@@ -13,8 +13,30 @@ router.get(
       where: {
         placeId,
       },
+      include: User,
     });
-    return res.json({ allReviews });
+    return res.json(allReviews);
+  })
+);
+
+router.delete(
+  "/review/:reviewId",
+  asyncHandler(async (req, res) => {
+    const reviewId = req.params.reviewId;
+    const thereview = await Review.findByPk(reviewId);
+    await thereview.destroy();
+    return res.json(reviewId);
+  })
+);
+
+router.put(
+  "/review/:reviewId",
+  asyncHandler(async (req, res) => {
+    const reviewId = req.params.reviewId;
+    const thereview = await Review.findByPk(reviewId);
+    await thereview.update(req.body);
+    const newreview = await Review.findByPk(reviewId);
+    return res.json(newreview);
   })
 );
 
@@ -27,6 +49,7 @@ router.get(
       where: {
         userId,
       },
+      include: User,
     });
     return res.json({ allReviews });
   })
