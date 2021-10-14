@@ -4,12 +4,15 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { loadTheSearchedHomes } from "../../store/homes";
+import { useHistory } from "react-router";
 
 export default function Header() {
+  let history = useHistory();
   const [searchInput, setSearchInput] = useState("");
   let dispatch = useDispatch();
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    history.push("/homes");
     dispatch(loadTheSearchedHomes(searchInput));
   };
 
