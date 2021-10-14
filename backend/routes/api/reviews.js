@@ -33,10 +33,14 @@ router.put(
   "/review/:reviewId",
   asyncHandler(async (req, res) => {
     const reviewId = req.params.reviewId;
-    const thereview = await Review.findByPk(reviewId);
+    const thereview = await Review.findOne({
+      where: {
+        id: reviewId,
+      },
+      include: User,
+    });
     await thereview.update(req.body);
-    const newreview = await Review.findByPk(reviewId);
-    return res.json(newreview);
+    return res.json(thereview);
   })
 );
 

@@ -1,6 +1,6 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const { Place } = require("../../db/models");
+const { Place, User } = require("../../db/models");
 const { Op } = require("sequelize");
 
 const router = express.Router();
@@ -16,6 +16,7 @@ router.get(
           [Op.iLike]: `%${term}%`,
         },
       },
+      include: User,
     });
     return res.json({ searchResults });
   })
