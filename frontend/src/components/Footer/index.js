@@ -1,11 +1,25 @@
 import React from "react";
 import "./Footer.css";
 
-export default function Footer() {
+export default function Footer({ width }) {
+  console.log(width);
+
   return (
     <div className="footer__container mar-top-sm">
-      <div className="first-section">Add dummy footer text</div>
-      <div className="second-section">
+      <div
+        className="first-section"
+        style={{
+          maxWidth: `${width}`,
+        }}
+      >
+        Add dummy footer text
+      </div>
+      <div
+        className="second-section"
+        style={{
+          maxWidth: `${width}`,
+        }}
+      >
         <div className="company">
           <span>© 2021 Airbnb, Inc</span>
           <span>Privacy</span>

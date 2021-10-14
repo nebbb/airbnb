@@ -20,8 +20,7 @@ module.exports = {
       },
       profilePicture: {
         type: Sequelize.STRING(300),
-        defaultValue:
-          "https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg",
+        defaultValue: "https://a0.muscache.com/defaults/user_pic-225x225.png",
       },
       accountType: {
         type: Sequelize.INTEGER,

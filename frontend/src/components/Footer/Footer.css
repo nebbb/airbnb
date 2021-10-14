@@ -5,7 +5,6 @@
   font-size: 1.4rem;
 }
 .first-section {
-  max-width: 150rem;
   margin: 0 auto;
   padding-bottom: 2rem;
 }
@@ -13,7 +12,6 @@
   display: flex;
   margin: 0 auto;
 
-  max-width: 150rem;
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid rgb(212, 212, 212);

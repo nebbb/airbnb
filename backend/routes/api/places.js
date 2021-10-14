@@ -36,6 +36,7 @@ router.get(
       where: {
         userId: specificUser,
       },
+      include: User,
     });
     return res.json({ allPlacesFromSpecificUser });
   })
@@ -53,10 +54,11 @@ router.put(
   "/:placeId",
   asyncHandler(async (req, res) => {
     const placeId = req.params.placeId;
-    const theplace = await Place.findByPk(placeId);
+    const theplace = await Place.findByPk(placeId, {
+      include: User,
+    });
     await theplace.update(req.body);
-    const newplace = await Place.findByPk(placeId);
-    return res.json(newplace);
+    return res.json(theplace);
   })
 );
 

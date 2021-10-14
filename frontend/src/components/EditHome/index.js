@@ -39,7 +39,7 @@ export default function EditHome() {
       picTwo: imgTwo,
       picThree: imgThree,
     };
-    const theHome = await dispatch(updateAHome(user.id, payload));
+    const theHome = await dispatch(updateAHome(homeId, payload));
     if (theHome) history.push(`/homes/${homeId}`);
   };
 

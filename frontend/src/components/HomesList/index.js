@@ -140,7 +140,11 @@ export default function HomesList() {
       <div className="homes-list__container">
         <div ref={leftSideContainer} className="homes-list-leftside">
           <div className="homes-container">
-            <p className="mar-top-esm">300+ stays</p>
+            <p className="mar-top-esm">
+              {Object.values(homes).length > 1
+                ? `${Object.values(homes).length} stays`
+                : `${Object.values(homes).length} stay`}
+            </p>
             <h2>{title ? title : "All homes"}</h2>
             <div className="homes-list-filter">
               <button onClick={(e) => filteredSelect(e, 1)}>
@@ -153,7 +157,7 @@ export default function HomesList() {
               <button onClick={(e) => filteredSelect(e, 4)}>Time posted</button>
             </div>
             <div className="homes-list-flex">
-              {homes ? (
+              {Object.values(homes).length ? (
                 Object.values(homes).map((home) => (
                   <NavLink key={home.id} to={`/homes/${home.id}`}>
                     <HomeCard home={home} />

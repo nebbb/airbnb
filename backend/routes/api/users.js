@@ -40,4 +40,12 @@ router.post(
   })
 );
 
+router.get(
+  "/all",
+  asyncHandler(async (req, res) => {
+    const allusers = await User.findAll();
+    return res.json(allusers);
+  })
+);
+
 module.exports = router;

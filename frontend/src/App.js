@@ -15,6 +15,8 @@ import HomeForm from "./components/HomeForm";
 import SingleHome from "./components/SingleHome";
 import Header from "./components/Header";
 import EditHome from "./components/EditHome";
+import ProfilePage from "./components/ProfilePage";
+import ApplicationPage from "./components/ApplicationPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,7 +36,7 @@ function App() {
             <HostHome />
             <DiscoverHome />
           </div>
-          <Footer />
+          <Footer width={"150rem"} />
         </Route>
         <Route path="/homes/:homeId/edit">
           <EditHome />
@@ -42,15 +44,30 @@ function App() {
         <Route exact path="/homes">
           <HomesList />
         </Route>
+        <Route path="/profile/:profileId">
+          <Header />
+          <div className="main__content-wrapper--tighter">
+            <ProfilePage />
+          </div>
+        </Route>
+        {/* <Route path="/profile">
+          <Header />
+          <div className="main__content-wrapper--tighter">
+            <ProfilePage />
+          </div>
+        </Route> */}
         <Route path="/homes/:homeId">
           <Header />
           <div className="main__content-wrapper--tighter">
             <SingleHome />
           </div>
-          <Footer />
+          <Footer width={"100rem"} />
         </Route>
         <Route path="/application">
           <ApplicationForm />
+        </Route>
+        <Route path="/applicationpage">
+          <ApplicationPage />
         </Route>
         <Route path="/create">
           <HomeForm />
