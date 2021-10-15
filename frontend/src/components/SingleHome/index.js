@@ -99,13 +99,13 @@ export default function SingleHome() {
           <div
             className="single-home single-home-2"
             style={{
-              backgroundImage: `url(${homes[homeId]?.picOne})`,
+              backgroundImage: `url(${homes[homeId]?.picTwo})`,
             }}
           ></div>
           <div
             className="single-home single-home-3"
             style={{
-              backgroundImage: `url(${homes[homeId]?.picOne})`,
+              backgroundImage: `url(${homes[homeId]?.picThree})`,
             }}
           ></div>
         </div>

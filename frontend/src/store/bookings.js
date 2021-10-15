@@ -1,88 +1,84 @@
 import { csrfFetch } from "./csrf";
-const LOAD_FAVOURITES = "favourites/LOAD";
-const REMOVE_FAVOURITES = "favourites/REMOVE";
-const ADD_A_FAVOURITE = "favourite/ADDONE";
+const LOAD_APPLICATIONS = "applications/LOAD";
+const ADD_APPLICATION = "applications/ADD";
+const UPDATE_USER = "applications/UPDATE";
 
-const loadFavourites = (data) => {
+const loadApplications = (data) => {
   return {
-    type: LOAD_FAVOURITES,
+    type: LOAD_APPLICATIONS,
     data,
   };
 };
 
-const removeFavourites = (data) => {
+const addApplication = (data) => {
   return {
-    type: REMOVE_FAVOURITES,
+    type: ADD_APPLICATION,
     data,
   };
 };
 
-const addFavourite = (data) => {
+const updateUser = (data) => {
   return {
-    type: ADD_A_FAVOURITE,
+    type: UPDATE_USER,
     data,
   };
 };
 
-export const loadTheFavourites = () => async (dispatch) => {
-  const allFavourites = await fetch("/api/favourites/all");
-  const allFavouritesArray = await allFavourites.json();
-  dispatch(loadFavourites(allFavouritesArray));
+export const loadTheApplications = () => async (dispatch) => {
+  const allApplications = await fetch(`/api/applications/all`);
+  const allApplicationsArray = await allApplications.json();
+  dispatch(loadApplications(allApplicationsArray));
 };
 
-export const addAFavourite = (userId, placeId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/favourites/`, {
+export const updateAUser = (Adata) => async (dispatch) => {
+  const { userId, id } = Adata;
+
+  const response = await csrfFetch(`/api/applications/${userId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(Adata),
+  });
+  const data = await response.json();
+
+  dispatch(updateUser(id));
+};
+
+export const addTheApplication = (data) => async (dispatch) => {
+  const response = await csrfFetch(`/api/applications`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ userId, placeId }),
+    body: JSON.stringify(data),
   });
-  if (response.ok) {
-    const addded = await response.json();
-    dispatch(addFavourite(addded));
-    return addded;
-  }
-};
-
-export const removeAFavourite = (id, homeid) => async (dispatch) => {
-  const response = await csrfFetch(`/api/favourites/${id}/${homeid}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (response.ok) {
-    const removed = await response.json();
-    dispatch(removeFavourites(removed));
-    return removed;
-  }
+  const dataA = await response.json();
+  dispatch(addApplication(dataA));
+  return dataA;
 };
 
 const initialState = {};
 
-const favouritesReducer = (state = initialState, action) => {
+const bookingsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case LOAD_FAVOURITES: {
+    case LOAD_APPLICATIONS: {
       newState = { ...state };
-      action.data.forEach((fav, i) => {
-        newState[i + 1] = fav;
+      action.data.forEach((application) => {
+        newState[application.id] = application;
       });
+
       return newState;
     }
-    case REMOVE_FAVOURITES: {
-      newState = {};
-      action.data.forEach((fav, i) => {
-        newState[i + 1] = fav;
-      });
+    case ADD_APPLICATION: {
+      newState = { ...state };
+      newState[action.data.id] = action.data;
       return newState;
     }
-    case ADD_A_FAVOURITE: {
-      newState = {};
-      action.data.forEach((fav, i) => {
-        newState[i + 1] = fav;
-      });
+    case UPDATE_USER: {
+      newState = { ...state };
+      delete newState[action.data];
       return newState;
     }
     default:
@@ -90,4 +86,4 @@ const favouritesReducer = (state = initialState, action) => {
   }
 };
 
-export default favouritesReducer;
+export default bookingsReducer;
