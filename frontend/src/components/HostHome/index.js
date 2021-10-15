@@ -1,5 +1,6 @@
 import React from "react";
 import "./HostHome.css";
+import { Link } from "react-router-dom";
 
 export default function index() {
   return (
@@ -11,7 +12,9 @@ export default function index() {
           <br />
           opportunities by sharing your space.
         </p>
-        <button className="host-btn mar-top-esm">Learn more</button>
+        <Link to="/application">
+          <button className="host-btn mar-top-esm">Learn more</button>
+        </Link>
       </div>
     </div>
   );

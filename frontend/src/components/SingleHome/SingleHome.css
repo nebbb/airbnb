@@ -156,4 +156,55 @@
 }
 .single-home-reviews {
   margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #dddddd;
+}
+.booking-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.f-price {
+  font-size: 2rem;
+  font-family: "Airbnb Cereal App Medium";
+}
+.s-price {
+  font-size: 1.5rem;
+  font-family: "Airbnb Cereal App Book";
+}
+.home-review {
+  display: flex;
+  flex-direction: column;
+}
+.review-p-img {
+  width: 5.5rem;
+  height: 5.5rem;
+  display: block;
+  border-radius: 100px;
+}
+.col-flex {
+  display: flex;
+  flex-direction: column;
+}
+.home-review-top {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1rem;
+}
+.fir-text {
+  font-size: 1.6rem;
+}
+
+.sec-text {
+  color: #757171;
+  font-size: 1.4rem;
+}
+.review-text__main {
+  font-size: 1.7rem;
+}
+.single-home-rules {
+  padding-top: 2rem;
+  border-top: 1px solid #dddddd;
 }

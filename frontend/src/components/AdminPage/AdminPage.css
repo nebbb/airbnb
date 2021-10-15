@@ -1,0 +1,38 @@
+.admin-page__container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+.admin-page__leftside {
+  width: 15rem;
+  background: linear-gradient(
+    to right,
+    rgb(230, 30, 77) 0%,
+    rgb(227, 28, 95) 50%,
+    rgb(215, 4, 102) 100%
+  ) !important;
+  padding: 5rem 1.2rem;
+}
+.admin-page__rightside {
+  flex: 1;
+}
+
+.admin-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+.admin-list-item:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.fa-wpforms {
+  font-size: 4rem;
+  color: #fff;
+}
+.active-item {
+  padding: 2rem;
+  border-radius: 1.2rem;
+  background-color: rgba(0, 0, 0, 0.2);
+}

@@ -2,7 +2,11 @@
   width: 40rem;
   height: 40rem;
   padding: 2rem;
-  background-color: orangered;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .application-form__main {
   width: 100%;
@@ -10,12 +14,26 @@
   display: flex;
   gap: 1rem;
   flex-direction: column;
+  height: max-content;
+  max-width: 60rem;
+  font-size: 1.8rem;
 }
 .application-form__input {
   width: 100%;
   outline: none;
   border: none;
+  outline: 1px solid rgb(221, 221, 221);
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+  border-radius: 0.8rem;
 }
 .application-form__button {
   border: none;
+  background-color: rgb(34, 34, 34);
+  padding: 1.4rem 2.4rem;
+  color: #fff;
+  border-radius: 0.8rem;
+  width: max-content;
+  margin: 0 auto;
+  font-size: 1.6rem;
 }

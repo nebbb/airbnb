@@ -84,7 +84,6 @@ export const removeAHome = (id) => async (dispatch) => {
   });
   const dataA = await response.json();
   dispatch(removeHomes(dataA));
-  console.log(dataA);
 
   return dataA;
 };

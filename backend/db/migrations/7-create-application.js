@@ -10,6 +10,7 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
+        references: { model: "Users" },
       },
       reason: {
         type: Sequelize.TEXT,

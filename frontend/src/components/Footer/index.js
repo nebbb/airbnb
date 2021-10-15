@@ -2,7 +2,6 @@ import React from "react";
 import "./Footer.css";
 
 export default function Footer({ width }) {
-  console.log(width);
 
   return (
     <div className="footer__container mar-top-sm">

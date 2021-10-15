@@ -12,6 +12,7 @@ import { deleteTheReviews } from "../../store/reviews";
 import { editTheReviews } from "../../store/reviews";
 import DatePicker from "../DatePicker";
 import DateCalendar from "../DateCalendar";
+import { loadTheUsers } from "../../store/users";
 
 export default function SingleHome() {
   const { homeId } = useParams();
@@ -19,6 +20,7 @@ export default function SingleHome() {
   const reviews = useSelector((state) => state.ratings);
   const realReviews = useSelector((state) => state.reviews);
   const user = useSelector((state) => state.session.user);
+  const users = useSelector((state) => state.users);
 
   const [newReviewInput, setNewReviewInput] = useState("");
 
@@ -29,6 +31,7 @@ export default function SingleHome() {
     dispatch(loadTheHomes());
     dispatch(loadTheRatings());
     dispatch(loadTheReviews(homeId));
+    dispatch(loadTheUsers());
   }, [dispatch]);
 
   const deleteHome = async (e) => {
@@ -205,7 +208,32 @@ export default function SingleHome() {
         <div className="single-home-content-rightside">
           <div className="booking__container">
             <div className="booking-top">
-              <div className="booking-flex">$100 / night</div>
+              <div className="booking-flex">
+                <div className="d-flex">
+                  <span className="f-price">{homes[homeId]?.price}</span>
+                  <span className="s-price">/ night</span>
+                </div>
+                <div>
+                  {reviews &&
+                    (reviews[homeId]?.avgRating === "NaN" ? (
+                      <div className="rating__container">No ratings.</div>
+                    ) : (
+                      <div className="rating__container">
+                        <i className="fas fa-star"></i>
+                        <p className="rating-tex">
+                          {reviews[homeId]?.avgRating}
+                        </p>
+                        <p className="rating-par">{`(${
+                          reviews[homeId]?.length
+                        } ${
+                          Number(reviews[homeId]?.length) > 1
+                            ? "Reviews"
+                            : "Review"
+                        }) `}</p>
+                      </div>
+                    ))}
+                </div>
+              </div>
             </div>
             <div className="booking-mid">
               <DatePicker />
@@ -218,174 +246,221 @@ export default function SingleHome() {
       </div>
       <div className="single-home-reviews">
         <div className="review-title-box">
-          <p className="reviews-title">Reviews</p>
-        </div>
-        {realReviews &&
-          Object.values(realReviews).map((review) => {
-            if (review.placeId === +homeId) {
-              return (
-                <div key={review.id} className="home-review">
-                  <div className="home-review-top">
-                    <img src={review.User?.profilePicture} alt="User" />
-                  </div>
-                  <div className="home-review-bottom">
-                    <p>{review.review}</p>
-                    <input
-                      value={newReviewInput}
-                      onChange={(e) => setNewReviewInput(e.target.value)}
-                      placeholder="Change edit..."
-                    />
-                  </div>
-                  {review.userId === user?.id && (
-                    <div>
-                      <button onClick={(e) => deleteReview(e, review.id)}>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          x="0px"
-                          y="0px"
-                          width="25px"
-                          height="25px"
-                          viewBox="0 0 172 172"
-                        >
-                          <defs>
-                            <linearGradient
-                              x1="26.99683"
-                              y1="26.99683"
-                              x2="98.74592"
-                              y2="98.74592"
-                              gradientUnits="userSpaceOnUse"
-                              id="color-1_OZuepOQd0omj_gr1"
-                            >
-                              <stop offset="0" stop-color="#ff5a5f"></stop>
-                              <stop offset="0.443" stop-color="#ee3d4a"></stop>
-                              <stop offset="1" stop-color="#e52030"></stop>
-                            </linearGradient>
-                            <linearGradient
-                              x1="98.08658"
-                              y1="98.08658"
-                              x2="145.15008"
-                              y2="145.15008"
-                              gradientUnits="userSpaceOnUse"
-                              id="color-2_OZuepOQd0omj_gr2"
-                            >
-                              <stop offset="0" stop-color="#a8142e"></stop>
-                              <stop offset="0.179" stop-color="#ba1632"></stop>
-                              <stop offset="0.243" stop-color="#c21734"></stop>
-                            </linearGradient>
-                          </defs>
-                          <g
-                            fill="none"
-                            fill-rule="nonzero"
-                            stroke="none"
-                            stroke-width="1"
-                            stroke-linecap="butt"
-                            stroke-linejoin="miter"
-                            stroke-miterlimit="10"
-                            stroke-dasharray=""
-                            stroke-dashoffset="0"
-                            font-family="none"
-                            font-weight="none"
-                            font-size="none"
-                            text-anchor="none"
-                          >
-                            <path d="M0,172v-172h172v172z" fill="none"></path>
-                            <g>
-                              <path
-                                d="M152.005,44.43692c2.7735,-2.7735 2.7735,-7.267 0,-10.0405l-14.40142,-14.40142c-2.7735,-2.7735 -7.267,-2.7735 -10.0405,0l-41.56308,41.56308l-41.56308,-41.56308c-2.7735,-2.7735 -7.267,-2.7735 -10.0405,0l-14.40142,14.40142c-2.7735,2.7735 -2.7735,7.267 0,10.0405l41.56308,41.56308l-41.56308,41.56308c-2.7735,2.7735 -2.7735,7.267 0,10.0405l14.40142,14.40142c2.7735,2.7735 7.267,2.7735 10.0405,0z"
-                                fill="url(#color-1_OZuepOQd0omj_gr1)"
-                              ></path>
-                              <path
-                                d="M86,110.44192l41.56308,41.56308c2.7735,2.7735 7.267,2.7735 10.0405,0l14.40142,-14.40142c2.7735,-2.7735 2.7735,-7.267 0,-10.0405l-41.56308,-41.56308z"
-                                fill="url(#color-2_OZuepOQd0omj_gr2)"
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>
-                      </button>
-                      <button onClick={(e) => editReview(e, review.id)}>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          x="0px"
-                          y="0px"
-                          width="25px"
-                          height="25px"
-                          viewBox="0 0 172 172"
-                        >
-                          <g
-                            fill="none"
-                            fill-rule="nonzero"
-                            stroke="none"
-                            stroke-width="1"
-                            stroke-linecap="butt"
-                            stroke-linejoin="miter"
-                            stroke-miterlimit="10"
-                            stroke-dasharray=""
-                            stroke-dashoffset="0"
-                            font-family="none"
-                            font-weight="none"
-                            font-size="none"
-                            text-anchor="none"
-                          >
-                            <path d="M0,172v-172h172v172z" fill="none"></path>
-                            <g>
-                              <path
-                                d="M111.39688,20.02188c-1.6125,0.26875 -3.09063,0.94062 -4.43438,1.74687c1.34375,-0.80625 2.95625,-1.47813 4.43438,-1.74687z"
-                                fill="#ff5a5f"
-                              ></path>
-                              <path
-                                d="M22.97813,151.97813l48.375,-10.75c2.28437,-0.5375 4.43437,-1.74688 6.04688,-3.35937l71.08437,-71.08438c4.8375,-4.8375 4.8375,-12.63125 0,-17.46875l-26.06875,-25.93437c-4.8375,-4.8375 -12.63125,-4.8375 -17.46875,0l-71.08437,71.08438c-1.6125,1.6125 -2.82187,3.7625 -3.35937,6.04688l-10.48125,48.50937c-0.67187,1.74688 1.20938,3.62813 2.95625,2.95625"
-                                fill="#ffffff"
-                              ></path>
-                              <path
-                                d="M139.88438,75.65313l8.73438,-8.73437c4.8375,-4.8375 4.8375,-12.63125 0,-17.46875l-26.06875,-26.20312c-4.8375,-4.8375 -12.63125,-4.8375 -17.46875,0l-8.73437,8.73438l43.5375,43.67188"
-                                fill="#ffffff"
-                              ></path>
-                              <path
-                                d="M55.9,116.1l-21.76875,-21.76875l62.21563,-62.21562l43.5375,43.5375l-62.21562,62.21563l-21.76875,-21.76875"
-                                fill="#f8b0b4"
-                              ></path>
-                              <path
-                                d="M55.9,116.1l62.21563,-62.21563l21.76875,21.76875l-62.21562,62.21563l-21.76875,-21.76875"
-                                fill="#f37c7e"
-                              ></path>
-                              <path
-                                d="M68.93438,129.26875v0c-1.74688,1.74687 -3.7625,3.09062 -6.31563,3.49375l-35.20625,11.825l-7.39062,4.3v0.26875c-0.5375,1.47813 0.67188,3.09062 2.15,3.09062c0,0 0,0 0.13438,0c0.26875,0 0.40312,0 0.67188,-0.13437v0l48.375,-10.75c2.28438,-0.5375 4.43438,-1.74688 6.04688,-3.35937l0.13438,-0.13438l-8.6,-8.6M131.28438,66.91875v0l8.46562,8.6v0l-8.46562,-8.6M139.88438,40.85c4.8375,4.8375 4.8375,12.63125 0,17.46875l-8.6,8.6l8.46562,8.6l0.13438,0.13438l8.73438,-8.73437c2.41875,-2.41875 3.62813,-5.50938 3.62813,-8.6c0,-3.09063 -1.20938,-6.31563 -3.62813,-8.73437l-8.73437,-8.73437"
-                                fill="#e7e7e7"
-                              ></path>
-                              <path
-                                d="M131.15,66.91875l-62.21562,62.35l8.73438,8.6l62.21563,-62.21562l-0.13438,-0.13438l-8.6,-8.6"
-                                fill="#dc7173"
-                              ></path>
-                              <path
-                                d="M20.02188,149.02188l3.7625,-20.69375l20.15625,20.15625l-20.9625,3.62813c-1.74688,0.5375 -3.62813,-1.34375 -2.95625,-3.09063z"
-                                fill="#a8b2c6"
-                              ></path>
-                              <path
-                                d="M150.23125,65.0375c0.94063,-1.34375 1.47813,-2.82187 1.88125,-4.43437c-0.40313,1.47813 -0.94063,3.09063 -1.88125,4.43437z"
-                                fill="#ff5a5f"
-                              ></path>
-                              <path
-                                d="M96.34688,32.11563l43.5375,43.5375"
-                                fill="none"
-                              ></path>
-                              <path
-                                d="M17.7375,154.2625c-1.74688,-1.74687 -2.28438,-4.16562 -1.6125,-6.31562l10.61562,-48.24063c0.80625,-3.09062 2.15,-5.77812 4.43438,-7.92813l70.95,-71.21875c6.31562,-6.31563 16.6625,-6.45 23.1125,-0.13438l26.06875,26.06875c6.31562,6.31563 6.31562,16.79688 0,23.24687l-71.08438,71.08438c-2.15,2.15 -4.97188,3.7625 -7.92812,4.43437l-48.24063,10.61563c-2.15,0.67188 -4.56875,0.13438 -6.31562,-1.6125zM119.59375,26.20313c-3.225,-3.225 -8.6,-3.225 -11.825,0l-71.08437,71.08438c-1.075,1.075 -1.88125,2.41875 -2.15,4.03125l-10.2125,46.225l46.225,-10.2125c1.47813,-0.40312 2.95625,-1.075 4.03125,-2.15l71.08437,-71.08438c3.225,-3.225 3.225,-8.6 0,-11.825z"
-                                fill="#464c55"
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>
-                      </button>
-                    </div>
-                  )}
+          <p className="reviews-title">
+            {reviews &&
+              (reviews[homeId]?.avgRating === "NaN" ? (
+                <div className="rating__container">No ratings.</div>
+              ) : (
+                <div className="rating__container">
+                  <i className="fas fa-star"></i>
+                  <p className="rating-tex">{reviews[homeId]?.avgRating}</p>
+                  <p className="rating-par">{`• ${reviews[homeId]?.length} ${
+                    Number(reviews[homeId]?.length) > 1 ? "Reviews" : "Review"
+                  }`}</p>
                 </div>
-              );
-            }
-          })}
+              ))}
+          </p>
+        </div>
+        <div className="reviews__overall__container">
+          {realReviews &&
+            Object.values(realReviews).map((review) => {
+              if (review.placeId === +homeId) {
+                return (
+                  <div key={review.id} className="home-review">
+                    <div className="home-review-top">
+                      <img
+                        className="review-p-img"
+                        src={review.User?.profilePicture}
+                        alt="User"
+                      />
+                      <div className="col-flex">
+                        <p className="fir-text">
+                          {users[review.userId]?.username}
+                        </p>
+                        <p className="sec-text">{review.createdAt}</p>
+                      </div>
+                    </div>
+                    <div className="home-review-bottom">
+                      <p className="review-text__main">{review.review}</p>
+                      <input
+                        value={newReviewInput}
+                        onChange={(e) => setNewReviewInput(e.target.value)}
+                        placeholder="Change edit..."
+                      />
+                    </div>
+                    {review.userId === user?.id && (
+                      <div>
+                        <button onClick={(e) => deleteReview(e, review.id)}>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            x="0px"
+                            y="0px"
+                            width="25px"
+                            height="25px"
+                            viewBox="0 0 172 172"
+                          >
+                            <defs>
+                              <linearGradient
+                                x1="26.99683"
+                                y1="26.99683"
+                                x2="98.74592"
+                                y2="98.74592"
+                                gradientUnits="userSpaceOnUse"
+                                id="color-1_OZuepOQd0omj_gr1"
+                              >
+                                <stop offset="0" stop-color="#ff5a5f"></stop>
+                                <stop
+                                  offset="0.443"
+                                  stop-color="#ee3d4a"
+                                ></stop>
+                                <stop offset="1" stop-color="#e52030"></stop>
+                              </linearGradient>
+                              <linearGradient
+                                x1="98.08658"
+                                y1="98.08658"
+                                x2="145.15008"
+                                y2="145.15008"
+                                gradientUnits="userSpaceOnUse"
+                                id="color-2_OZuepOQd0omj_gr2"
+                              >
+                                <stop offset="0" stop-color="#a8142e"></stop>
+                                <stop
+                                  offset="0.179"
+                                  stop-color="#ba1632"
+                                ></stop>
+                                <stop
+                                  offset="0.243"
+                                  stop-color="#c21734"
+                                ></stop>
+                              </linearGradient>
+                            </defs>
+                            <g
+                              fill="none"
+                              fill-rule="nonzero"
+                              stroke="none"
+                              stroke-width="1"
+                              stroke-linecap="butt"
+                              stroke-linejoin="miter"
+                              stroke-miterlimit="10"
+                              stroke-dasharray=""
+                              stroke-dashoffset="0"
+                              font-family="none"
+                              font-weight="none"
+                              font-size="none"
+                              text-anchor="none"
+                            >
+                              <path d="M0,172v-172h172v172z" fill="none"></path>
+                              <g>
+                                <path
+                                  d="M152.005,44.43692c2.7735,-2.7735 2.7735,-7.267 0,-10.0405l-14.40142,-14.40142c-2.7735,-2.7735 -7.267,-2.7735 -10.0405,0l-41.56308,41.56308l-41.56308,-41.56308c-2.7735,-2.7735 -7.267,-2.7735 -10.0405,0l-14.40142,14.40142c-2.7735,2.7735 -2.7735,7.267 0,10.0405l41.56308,41.56308l-41.56308,41.56308c-2.7735,2.7735 -2.7735,7.267 0,10.0405l14.40142,14.40142c2.7735,2.7735 7.267,2.7735 10.0405,0z"
+                                  fill="url(#color-1_OZuepOQd0omj_gr1)"
+                                ></path>
+                                <path
+                                  d="M86,110.44192l41.56308,41.56308c2.7735,2.7735 7.267,2.7735 10.0405,0l14.40142,-14.40142c2.7735,-2.7735 2.7735,-7.267 0,-10.0405l-41.56308,-41.56308z"
+                                  fill="url(#color-2_OZuepOQd0omj_gr2)"
+                                ></path>
+                              </g>
+                            </g>
+                          </svg>
+                        </button>
+                        <button onClick={(e) => editReview(e, review.id)}>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            x="0px"
+                            y="0px"
+                            width="25px"
+                            height="25px"
+                            viewBox="0 0 172 172"
+                          >
+                            <g
+                              fill="none"
+                              fill-rule="nonzero"
+                              stroke="none"
+                              stroke-width="1"
+                              stroke-linecap="butt"
+                              stroke-linejoin="miter"
+                              stroke-miterlimit="10"
+                              stroke-dasharray=""
+                              stroke-dashoffset="0"
+                              font-family="none"
+                              font-weight="none"
+                              font-size="none"
+                              text-anchor="none"
+                            >
+                              <path d="M0,172v-172h172v172z" fill="none"></path>
+                              <g>
+                                <path
+                                  d="M111.39688,20.02188c-1.6125,0.26875 -3.09063,0.94062 -4.43438,1.74687c1.34375,-0.80625 2.95625,-1.47813 4.43438,-1.74687z"
+                                  fill="#ff5a5f"
+                                ></path>
+                                <path
+                                  d="M22.97813,151.97813l48.375,-10.75c2.28437,-0.5375 4.43437,-1.74688 6.04688,-3.35937l71.08437,-71.08438c4.8375,-4.8375 4.8375,-12.63125 0,-17.46875l-26.06875,-25.93437c-4.8375,-4.8375 -12.63125,-4.8375 -17.46875,0l-71.08437,71.08438c-1.6125,1.6125 -2.82187,3.7625 -3.35937,6.04688l-10.48125,48.50937c-0.67187,1.74688 1.20938,3.62813 2.95625,2.95625"
+                                  fill="#ffffff"
+                                ></path>
+                                <path
+                                  d="M139.88438,75.65313l8.73438,-8.73437c4.8375,-4.8375 4.8375,-12.63125 0,-17.46875l-26.06875,-26.20312c-4.8375,-4.8375 -12.63125,-4.8375 -17.46875,0l-8.73437,8.73438l43.5375,43.67188"
+                                  fill="#ffffff"
+                                ></path>
+                                <path
+                                  d="M55.9,116.1l-21.76875,-21.76875l62.21563,-62.21562l43.5375,43.5375l-62.21562,62.21563l-21.76875,-21.76875"
+                                  fill="#f8b0b4"
+                                ></path>
+                                <path
+                                  d="M55.9,116.1l62.21563,-62.21563l21.76875,21.76875l-62.21562,62.21563l-21.76875,-21.76875"
+                                  fill="#f37c7e"
+                                ></path>
+                                <path
+                                  d="M68.93438,129.26875v0c-1.74688,1.74687 -3.7625,3.09062 -6.31563,3.49375l-35.20625,11.825l-7.39062,4.3v0.26875c-0.5375,1.47813 0.67188,3.09062 2.15,3.09062c0,0 0,0 0.13438,0c0.26875,0 0.40312,0 0.67188,-0.13437v0l48.375,-10.75c2.28438,-0.5375 4.43438,-1.74688 6.04688,-3.35937l0.13438,-0.13438l-8.6,-8.6M131.28438,66.91875v0l8.46562,8.6v0l-8.46562,-8.6M139.88438,40.85c4.8375,4.8375 4.8375,12.63125 0,17.46875l-8.6,8.6l8.46562,8.6l0.13438,0.13438l8.73438,-8.73437c2.41875,-2.41875 3.62813,-5.50938 3.62813,-8.6c0,-3.09063 -1.20938,-6.31563 -3.62813,-8.73437l-8.73437,-8.73437"
+                                  fill="#e7e7e7"
+                                ></path>
+                                <path
+                                  d="M131.15,66.91875l-62.21562,62.35l8.73438,8.6l62.21563,-62.21562l-0.13438,-0.13438l-8.6,-8.6"
+                                  fill="#dc7173"
+                                ></path>
+                                <path
+                                  d="M20.02188,149.02188l3.7625,-20.69375l20.15625,20.15625l-20.9625,3.62813c-1.74688,0.5375 -3.62813,-1.34375 -2.95625,-3.09063z"
+                                  fill="#a8b2c6"
+                                ></path>
+                                <path
+                                  d="M150.23125,65.0375c0.94063,-1.34375 1.47813,-2.82187 1.88125,-4.43437c-0.40313,1.47813 -0.94063,3.09063 -1.88125,4.43437z"
+                                  fill="#ff5a5f"
+                                ></path>
+                                <path
+                                  d="M96.34688,32.11563l43.5375,43.5375"
+                                  fill="none"
+                                ></path>
+                                <path
+                                  d="M17.7375,154.2625c-1.74688,-1.74687 -2.28438,-4.16562 -1.6125,-6.31562l10.61562,-48.24063c0.80625,-3.09062 2.15,-5.77812 4.43438,-7.92813l70.95,-71.21875c6.31562,-6.31563 16.6625,-6.45 23.1125,-0.13438l26.06875,26.06875c6.31562,6.31563 6.31562,16.79688 0,23.24687l-71.08438,71.08438c-2.15,2.15 -4.97188,3.7625 -7.92812,4.43437l-48.24063,10.61563c-2.15,0.67188 -4.56875,0.13438 -6.31562,-1.6125zM119.59375,26.20313c-3.225,-3.225 -8.6,-3.225 -11.825,0l-71.08437,71.08438c-1.075,1.075 -1.88125,2.41875 -2.15,4.03125l-10.2125,46.225l46.225,-10.2125c1.47813,-0.40312 2.95625,-1.075 4.03125,-2.15l71.08437,-71.08438c3.225,-3.225 3.225,-8.6 0,-11.825z"
+                                  fill="#464c55"
+                                ></path>
+                              </g>
+                            </g>
+                          </svg>
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+            })}
+        </div>
       </div>
       <div className="single-home-map">ALL MAP here</div>
       <div className="single-home-hosted">Hosted by</div>
-      <div className="single-home-rules">house rules</div>
+      <div className="single-home-rules">
+        <h2 className="house-rules-title">Things to know</h2>
+        <div className="house-rules-container">
+          <div className="house-rule">
+            <h3>House rules</h3>
+          </div>
+          <div className="house-rule">
+            <h3>Health & safety</h3>
+          </div>
+          <div className="house-rule">
+            <h3>Cancellation policy</h3>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -46,9 +46,7 @@ export default function ApplicationForm() {
             required
           />
         </label>
-        <button className="application-form__button">
-          Submit application!
-        </button>
+        <button className="application-form__button">Submit!</button>
       </form>
     </div>
   );

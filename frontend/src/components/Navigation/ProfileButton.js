@@ -29,7 +29,6 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
   };
 
-  console.log(user);
 
   return (
     <>

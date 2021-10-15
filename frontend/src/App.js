@@ -10,13 +10,13 @@ import HostHome from "./components/HostHome";
 import DiscoverHome from "./components/DiscoverHome";
 import Footer from "./components/Footer";
 import HomesList from "./components/HomesList";
-import ApplicationForm from "./components/ApplicationForm";
 import HomeForm from "./components/HomeForm";
 import SingleHome from "./components/SingleHome";
 import Header from "./components/Header";
 import EditHome from "./components/EditHome";
 import ProfilePage from "./components/ProfilePage";
 import ApplicationPage from "./components/ApplicationPage";
+import AdminPage from "./components/AdminPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,6 +50,9 @@ function App() {
             <ProfilePage />
           </div>
         </Route>
+        <Route path="/admin">
+          <AdminPage />
+        </Route>
         {/* <Route path="/profile">
           <Header />
           <div className="main__content-wrapper--tighter">
@@ -64,9 +67,6 @@ function App() {
           <Footer width={"100rem"} />
         </Route>
         <Route path="/application">
-          <ApplicationForm />
-        </Route>
-        <Route path="/applicationpage">
           <ApplicationPage />
         </Route>
         <Route path="/create">
