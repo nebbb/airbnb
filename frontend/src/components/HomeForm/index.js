@@ -3,6 +3,7 @@ import "./HomeForm.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { addAHome } from "../../store/homes";
+import { Redirect } from "react-router";
 
 export default function HomeForm() {
   const [name, setName] = useState("");
@@ -44,6 +45,10 @@ export default function HomeForm() {
     const theHome = await dispatch(addAHome(payload));
     if (theHome) history.push("/homes");
   };
+
+  if (user?.accountType < 2) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="home-form__container">

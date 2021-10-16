@@ -14,6 +14,8 @@ import DatePicker from "../DatePicker";
 import DateCalendar from "../DateCalendar";
 import { loadTheUsers } from "../../store/users";
 import { addTheBookings } from "../../store/bookings";
+import { Rating } from "react-simple-star-rating";
+import { addTheReviews } from "../../store/reviews";
 
 export default function SingleHome() {
   const { homeId } = useParams();
@@ -24,9 +26,16 @@ export default function SingleHome() {
   const realReviews = useSelector((state) => state.reviews);
   const user = useSelector((state) => state.session.user);
   const users = useSelector((state) => state.users);
+  const [rating, setRating] = useState(0);
+  const [reviewInput, setReviewInput] = useState("");
+
   let inputs = document.querySelectorAll(".DateInput_input_1");
 
   const [newReviewInput, setNewReviewInput] = useState("");
+
+  const handleRating = (rate) => {
+    setRating(rate);
+  };
 
   useEffect(() => {
     dispatch(loadTheHomes());
@@ -55,7 +64,7 @@ export default function SingleHome() {
     if (edited) setNewReviewInput("");
   };
 
-  const submitBooking = (e) => {
+  const submitBooking = async (e) => {
     e.preventDefault();
     const str = Array.from(inputs).map((input) => input.value);
     const fstr = `You've booked a stay at ${
@@ -66,9 +75,22 @@ export default function SingleHome() {
       placeId: homeId,
       description: fstr,
     };
-    const booked = dispatch(addTheBookings(payload));
+    const booked = await dispatch(addTheBookings(payload));
     if (booked) history.push("/bookings");
   };
+
+  const submitReview = async (e) => {
+    e.preventDefault();
+    if (reviewInput.length < 1) return window.alert("Input a review");
+    const payload = {
+      userId: user.id,
+      placeId: homeId,
+      review: reviewInput,
+      rating: rating.toString(),
+    };
+    dispatch(addTheReviews(payload)).then(() => dispatch(loadTheRatings()));
+  };
+
 
   return (
     <div className="single-home__container">
@@ -83,8 +105,10 @@ export default function SingleHome() {
                 <div className="rating__container">
                   <i className="fas fa-star"></i>
                   <p className="rating-tex">{reviews[homeId]?.avgRating}</p>
-                  <p className="rating-par">{`(${reviews[homeId]?.length} ${
-                    Number(reviews[homeId]?.length) > 1 ? "Reviews" : "Review"
+                  <p className="rating-par">{`(${
+                    Object.values(realReviews).length
+                  } ${
+                    Object.values(realReviews).length > 1 ? "Reviews" : "Review"
                   }) `}</p>
                 </div>
               ))}
@@ -254,9 +278,9 @@ export default function SingleHome() {
                           {reviews[homeId]?.avgRating}
                         </p>
                         <p className="rating-par">{`(${
-                          reviews[homeId]?.length
+                          Object.values(realReviews).length
                         } ${
-                          Number(reviews[homeId]?.length) > 1
+                          Object.values(realReviews).length > 1
                             ? "Reviews"
                             : "Review"
                         }) `}</p>
@@ -275,6 +299,19 @@ export default function SingleHome() {
         </div>
       </div>
       <div className="single-home-reviews">
+        {user ? (
+          <div>
+            <div className="star-row__container">
+              <Rating onClick={handleRating} ratingValue={rating} />
+              <p>{`${rating} stars`}</p>
+            </div>
+            <textarea
+              required
+              onChange={(e) => setReviewInput(e.target.value)}
+            />
+            <button onClick={submitReview}>Post comment</button>
+          </div>
+        ) : null}
         <div className="review-title-box">
           <div className="reviews-title">
             {reviews &&
@@ -284,8 +321,10 @@ export default function SingleHome() {
                 <div className="rating__container">
                   <i className="fas fa-star"></i>
                   <p className="rating-tex">{reviews[homeId]?.avgRating}</p>
-                  <p className="rating-par">{`• ${reviews[homeId]?.length} ${
-                    Number(reviews[homeId]?.length) > 1 ? "Reviews" : "Review"
+                  <p className="rating-par">{`• ${
+                    Object.values(realReviews).length
+                  } ${
+                    Object.values(realReviews).length > 1 ? "Reviews" : "Review"
                   }`}</p>
                 </div>
               ))}
@@ -466,7 +505,7 @@ export default function SingleHome() {
             })}
         </div>
       </div>
-      <div className="single-home-hosted">Hosted by</div>
+      <div className="single-home-hosted">{homes[homeId]?.User.username}</div>
       <div className="single-home-rules">
         <h2 className="house-rules-title">Things to know</h2>
         <div className="house-rules-container">

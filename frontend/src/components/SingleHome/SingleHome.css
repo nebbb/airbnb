@@ -211,3 +211,13 @@
 .edit-home {
   color: #222222;
 }
+.star-row__container {
+  display: flex;
+  align-items: center;
+}
+.single-star {
+  cursor: pointer;
+}
+.fa-star {
+  font-size: 2rem;
+}

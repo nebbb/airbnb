@@ -67,12 +67,12 @@ function App() {
         <Route path="/admin">
           <AdminPage />
         </Route>
-        {/* <Route path="/profile">
+        <Route path="/profile">
           <Header />
           <div className="main__content-wrapper--tighter">
-            <ProfilePage />
+            SINGLE PROFILE PAGE
           </div>
-        </Route> */}
+        </Route>
         <Route path="/homes/:homeId">
           <Header />
           <div className="main__content-wrapper--tighter">

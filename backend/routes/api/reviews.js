@@ -44,6 +44,17 @@ router.put(
   })
 );
 
+router.post(
+  "/",
+  asyncHandler(async (req, res) => {
+    const thereview = await Review.create(req.body);
+    const returnreview = await Review.findByPk(thereview.id, {
+      include: User,
+    });
+    return res.json(returnreview);
+  })
+);
+
 // Get all reviews for a specific user
 router.get(
   "/user/:userId",

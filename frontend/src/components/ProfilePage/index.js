@@ -19,9 +19,13 @@ export default function ProfilePage() {
         <div className="profile-user__modal">
           <div className="profile-user-icon">
             <div
-              style={{
-                backgroundImage: `url(${users[profileId]?.profilePicture})`,
-              }}
+              style={
+                users[profileId]?.profilePicture
+                  ? {
+                      backgroundImage: `url(${users[profileId]?.profilePicture})`,
+                    }
+                  : null
+              }
               className="profile-user-i"
             ></div>
             <p>Update photo</p>

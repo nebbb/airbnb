@@ -4,9 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loadTheApplications } from "../../store/applications";
 import { updateAUser } from "../../store/applications";
+import { useHistory } from "react-router";
+import { Redirect } from "react-router";
 
 export default function AdminPage() {
   const applicants = useSelector((state) => state.applications);
+  const currUser = useSelector((state) => state.session.user);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -18,6 +21,10 @@ export default function AdminPage() {
     const payload = { id, userId };
     const updated = await dispatch(updateAUser(payload));
   };
+
+  if (currUser?.accountType < 3) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="admin-page__container">
