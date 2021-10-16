@@ -9,7 +9,13 @@ export default function HostHome() {
   return (
     <div
       style={{
-        backgroundImage: `url("https://via.placeholder.com/500")`,
+        backgroundImage: `url(${
+          user
+            ? user.accountType > 1
+              ? "https://a0.muscache.com/im/pictures/91780510-ca64-4fc4-a7e6-be7c8f7129d5.jpg?im_w=1440"
+              : "https://a0.muscache.com/im/pictures/2595054e-d1d9-4fde-8046-58d51fcb3164.jpg?im_w=1440"
+            : "https://a0.muscache.com/im/pictures/2595054e-d1d9-4fde-8046-58d51fcb3164.jpg?im_w=1440"
+        })`,
       }}
       className="try-hosting__container mar-top-sm"
     >
@@ -21,7 +27,7 @@ export default function HostHome() {
               : "Try hosting"
             : "Try hosting"}
         </h2>
-        <p className="host-text">
+        <div className="host-text">
           {user ? (
             user.accountType > 1 ? (
               "Start selling!"
@@ -39,7 +45,7 @@ export default function HostHome() {
               opportunities by sharing your space.
             </p>
           )}
-        </p>
+        </div>
         {user ? (
           user.accountType > 1 ? (
             <Link to="/create">

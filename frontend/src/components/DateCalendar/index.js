@@ -9,24 +9,15 @@ const DateCalendar = (props) => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [focusedInput, setFocusedInput] = useState("startDate");
-  const [initialMonth, setInitialMonth] = useState(moment("01-01-2021"));
-
-  const handleDatesChange = ({ startDate, endDate }) => {
-    setStartDate(moment(startDate, "MMM DD, YYYY"));
-    setEndDate(moment(endDate, "MMM DD, YYYY"));
-  };
-
-  const handleMonthChange = () => {
-    setInitialMonth(null);
-    setTimeout(() => setInitialMonth(moment("01-06-2021")), 0);
-  };
+  const [initialMonth, setInitialMonth] = useState(
+    moment("10-18-2021", "MM-DD-YYYY")
+  );
 
   if (!initialMonth) return <div>Loading...</div>;
 
   return (
     <div>
       <DayPickerRangeController
-        onDatesChange={handleDatesChange}
         focusedInput={focusedInput}
         startDate={startDate}
         endDate={endDate}

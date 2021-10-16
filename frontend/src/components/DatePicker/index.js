@@ -11,7 +11,6 @@ class DatePicker extends Component {
       endDate: null,
     };
   }
-  
 
   render() {
     return (
@@ -20,9 +19,9 @@ class DatePicker extends Component {
         startDateId="aa_start_date_id"
         endDate={this.state.endDate}
         endDateId="aa_end_date_id"
-        onDatesChange={({ startDate, endDate }) =>
-          this.setState({ startDate, endDate })
-        }
+        onDatesChange={({ startDate, endDate }) => {
+          this.setState({ startDate, endDate });
+        }}
         focusedInput={this.state.focusedInput}
         onFocusChange={(focusedInput) => this.setState({ focusedInput })}
       />

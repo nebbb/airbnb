@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Component } from "react";
 import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { loadTheHomes } from "../../store/homes";
@@ -13,19 +13,20 @@ import { editTheReviews } from "../../store/reviews";
 import DatePicker from "../DatePicker";
 import DateCalendar from "../DateCalendar";
 import { loadTheUsers } from "../../store/users";
+import { addTheBookings } from "../../store/bookings";
 
 export default function SingleHome() {
   const { homeId } = useParams();
+  let history = useHistory();
+  const dispatch = useDispatch();
   const homes = useSelector((state) => state.homes);
   const reviews = useSelector((state) => state.ratings);
   const realReviews = useSelector((state) => state.reviews);
   const user = useSelector((state) => state.session.user);
   const users = useSelector((state) => state.users);
+  let inputs = document.querySelectorAll(".DateInput_input_1");
 
   const [newReviewInput, setNewReviewInput] = useState("");
-
-  let history = useHistory();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadTheHomes());
@@ -54,6 +55,21 @@ export default function SingleHome() {
     if (edited) setNewReviewInput("");
   };
 
+  const submitBooking = (e) => {
+    e.preventDefault();
+    const str = Array.from(inputs).map((input) => input.value);
+    const fstr = `You've booked a stay at ${
+      homes[homeId]?.name
+    } from ${str.join(" to ")}`;
+    const payload = {
+      userId: user.id,
+      placeId: homeId,
+      description: fstr,
+    };
+    const booked = dispatch(addTheBookings(payload));
+    if (booked) history.push("/bookings");
+  };
+
   return (
     <div className="single-home__container">
       <div className="single-home-info">
@@ -79,7 +95,9 @@ export default function SingleHome() {
           {user?.id === homes[homeId]?.userId ? (
             <div>
               <button onClick={deleteHome}>Delete</button>
-              <Link to={`/homes/${homeId}/edit`}>Edit</Link>
+              <Link className="edit-home" to={`/homes/${homeId}/edit`}>
+                Edit
+              </Link>
             </div>
           ) : (
             "NO"
@@ -90,23 +108,35 @@ export default function SingleHome() {
         <div className="firb">
           <div
             className="single-home single-home-1"
-            style={{
-              backgroundImage: `url(${homes[homeId]?.picOne})`,
-            }}
+            style={
+              homes[homeId]?.picOne
+                ? {
+                    backgroundImage: `url(${homes[homeId]?.picOne})`,
+                  }
+                : null
+            }
           ></div>
         </div>
         <div className="secb">
           <div
             className="single-home single-home-2"
-            style={{
-              backgroundImage: `url(${homes[homeId]?.picTwo})`,
-            }}
+            style={
+              homes[homeId]?.picOne
+                ? {
+                    backgroundImage: `url(${homes[homeId]?.picTwo})`,
+                  }
+                : null
+            }
           ></div>
           <div
             className="single-home single-home-3"
-            style={{
-              backgroundImage: `url(${homes[homeId]?.picThree})`,
-            }}
+            style={
+              homes[homeId]?.picOne
+                ? {
+                    backgroundImage: `url(${homes[homeId]?.picThree})`,
+                  }
+                : null
+            }
           ></div>
         </div>
       </div>
@@ -239,14 +269,14 @@ export default function SingleHome() {
               <DatePicker />
             </div>
             <div className="booking-bottom">
-              <button>Book</button>
+              <button onClick={(e) => submitBooking(e)}>Book</button>
             </div>
           </div>
         </div>
       </div>
       <div className="single-home-reviews">
         <div className="review-title-box">
-          <p className="reviews-title">
+          <div className="reviews-title">
             {reviews &&
               (reviews[homeId]?.avgRating === "NaN" ? (
                 <div className="rating__container">No ratings.</div>
@@ -259,7 +289,7 @@ export default function SingleHome() {
                   }`}</p>
                 </div>
               ))}
-          </p>
+          </div>
         </div>
         <div className="reviews__overall__container">
           {realReviews &&
@@ -308,12 +338,9 @@ export default function SingleHome() {
                                 gradientUnits="userSpaceOnUse"
                                 id="color-1_OZuepOQd0omj_gr1"
                               >
-                                <stop offset="0" stop-color="#ff5a5f"></stop>
-                                <stop
-                                  offset="0.443"
-                                  stop-color="#ee3d4a"
-                                ></stop>
-                                <stop offset="1" stop-color="#e52030"></stop>
+                                <stop offset="0" stopColor="#ff5a5f"></stop>
+                                <stop offset="0.443" stopColor="#ee3d4a"></stop>
+                                <stop offset="1" stopColor="#e52030"></stop>
                               </linearGradient>
                               <linearGradient
                                 x1="98.08658"
@@ -323,31 +350,25 @@ export default function SingleHome() {
                                 gradientUnits="userSpaceOnUse"
                                 id="color-2_OZuepOQd0omj_gr2"
                               >
-                                <stop offset="0" stop-color="#a8142e"></stop>
-                                <stop
-                                  offset="0.179"
-                                  stop-color="#ba1632"
-                                ></stop>
-                                <stop
-                                  offset="0.243"
-                                  stop-color="#c21734"
-                                ></stop>
+                                <stop offset="0" stopColor="#a8142e"></stop>
+                                <stop offset="0.179" stopColor="#ba1632"></stop>
+                                <stop offset="0.243" stopColor="#c21734"></stop>
                               </linearGradient>
                             </defs>
                             <g
                               fill="none"
-                              fill-rule="nonzero"
+                              fillRule="nonzero"
                               stroke="none"
-                              stroke-width="1"
-                              stroke-linecap="butt"
-                              stroke-linejoin="miter"
-                              stroke-miterlimit="10"
-                              stroke-dasharray=""
-                              stroke-dashoffset="0"
-                              font-family="none"
-                              font-weight="none"
-                              font-size="none"
-                              text-anchor="none"
+                              strokeWidth="1"
+                              strokeLinecap="butt"
+                              strokeLinejoin="miter"
+                              strokeMiterlimit="10"
+                              strokeDasharray=""
+                              strokeDashoffset="0"
+                              fontFamily="none"
+                              fontWeight="none"
+                              fontSize="none"
+                              textAnchor="none"
                             >
                               <path d="M0,172v-172h172v172z" fill="none"></path>
                               <g>
@@ -374,18 +395,18 @@ export default function SingleHome() {
                           >
                             <g
                               fill="none"
-                              fill-rule="nonzero"
+                              fillRule="nonzero"
                               stroke="none"
-                              stroke-width="1"
-                              stroke-linecap="butt"
-                              stroke-linejoin="miter"
-                              stroke-miterlimit="10"
-                              stroke-dasharray=""
-                              stroke-dashoffset="0"
-                              font-family="none"
-                              font-weight="none"
-                              font-size="none"
-                              text-anchor="none"
+                              strokeWidth="1"
+                              strokeLinecap="butt"
+                              strokeLinejoin="miter"
+                              strokeMiterlimit="10"
+                              strokeDasharray=""
+                              strokeDashoffset="0"
+                              fontFamily="none"
+                              fontWeight="none"
+                              fontSize="none"
+                              textAnchor="none"
                             >
                               <path d="M0,172v-172h172v172z" fill="none"></path>
                               <g>
@@ -445,7 +466,6 @@ export default function SingleHome() {
             })}
         </div>
       </div>
-      <div className="single-home-map">ALL MAP here</div>
       <div className="single-home-hosted">Hosted by</div>
       <div className="single-home-rules">
         <h2 className="house-rules-title">Things to know</h2>

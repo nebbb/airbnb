@@ -1,52 +1,29 @@
 import { csrfFetch } from "./csrf";
-const LOAD_APPLICATIONS = "applications/LOAD";
-const ADD_APPLICATION = "applications/ADD";
-const UPDATE_USER = "applications/UPDATE";
+const LOAD_BOOKINGS = "bookings/LOAD";
+const ADD_BOOKING = "bookings/ADD";
 
-const loadApplications = (data) => {
+const loadBookings = (data) => {
   return {
-    type: LOAD_APPLICATIONS,
+    type: LOAD_BOOKINGS,
     data,
   };
 };
 
-const addApplication = (data) => {
+const addBookings = (data) => {
   return {
-    type: ADD_APPLICATION,
+    type: ADD_BOOKING,
     data,
   };
 };
 
-const updateUser = (data) => {
-  return {
-    type: UPDATE_USER,
-    data,
-  };
+export const loadTheBookings = (id) => async (dispatch) => {
+  const allbookings = await fetch(`/api/bookings/user/${id}`);
+  const allbookingsarray = await allbookings.json();
+  dispatch(loadBookings(allbookingsarray));
 };
 
-export const loadTheApplications = () => async (dispatch) => {
-  const allApplications = await fetch(`/api/applications/all`);
-  const allApplicationsArray = await allApplications.json();
-  dispatch(loadApplications(allApplicationsArray));
-};
-
-export const updateAUser = (Adata) => async (dispatch) => {
-  const { userId, id } = Adata;
-
-  const response = await csrfFetch(`/api/applications/${userId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(Adata),
-  });
-  const data = await response.json();
-
-  dispatch(updateUser(id));
-};
-
-export const addTheApplication = (data) => async (dispatch) => {
-  const response = await csrfFetch(`/api/applications`, {
+export const addTheBookings = (data) => async (dispatch) => {
+  const response = await csrfFetch(`/api/bookings`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -54,7 +31,7 @@ export const addTheApplication = (data) => async (dispatch) => {
     body: JSON.stringify(data),
   });
   const dataA = await response.json();
-  dispatch(addApplication(dataA));
+  dispatch(addBookings(dataA));
   return dataA;
 };
 
@@ -63,22 +40,16 @@ const initialState = {};
 const bookingsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case LOAD_APPLICATIONS: {
+    case LOAD_BOOKINGS: {
       newState = { ...state };
-      action.data.forEach((application) => {
-        newState[application.id] = application;
+      action.data.forEach((booking) => {
+        newState[booking.id] = booking;
       });
-
       return newState;
     }
-    case ADD_APPLICATION: {
+    case ADD_BOOKING: {
       newState = { ...state };
       newState[action.data.id] = action.data;
-      return newState;
-    }
-    case UPDATE_USER: {
-      newState = { ...state };
-      delete newState[action.data];
       return newState;
     }
     default:

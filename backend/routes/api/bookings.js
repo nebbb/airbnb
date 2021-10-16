@@ -14,7 +14,7 @@ router.get(
         userId,
       },
     });
-    return res.json({ allBookings });
+    return res.json(allBookings);
   })
 );
 

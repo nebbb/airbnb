@@ -17,6 +17,8 @@ import EditHome from "./components/EditHome";
 import ProfilePage from "./components/ProfilePage";
 import ApplicationPage from "./components/ApplicationPage";
 import AdminPage from "./components/AdminPage";
+import BookingsPage from "./components/BookingsPage";
+import FavouritesPage from "./components/FavouritesPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +45,18 @@ function App() {
         </Route>
         <Route exact path="/homes">
           <HomesList />
+        </Route>
+        <Route exact path="/bookings">
+          <Header />
+          <div className="main__content-wrapper">
+            <BookingsPage />
+          </div>
+        </Route>
+        <Route exact path="/favourites">
+          <Header />
+          <div className="main__content-wrapper">
+            <FavouritesPage />
+          </div>
         </Route>
         <Route path="/profile/:profileId">
           <Header />
