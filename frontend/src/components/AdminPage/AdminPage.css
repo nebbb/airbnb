@@ -36,3 +36,30 @@
   border-radius: 1.2rem;
   background-color: rgba(0, 0, 0, 0.2);
 }
+.accept-btn {
+  background-color: #7ce495;
+  padding: 1rem 2rem;
+  border-radius: 0.8rem;
+  border: none;
+  outline: none;
+  color: #fff;
+  margin-top: 0.6rem;
+  cursor: pointer;
+}
+.mid-p {
+  width: max-content;
+  margin: 0 auto;
+  margin-top: 20rem;
+}
+.seller__title {
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  text-decoration: underline;
+}
+.yespan {
+  font-size: 1.6rem;
+}
+.spann {
+  font-weight: 700;
+  font-size: 1.8rem;
+}

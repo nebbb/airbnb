@@ -1,10 +1,20 @@
 import React, { useState } from "react";
 import { Modal } from "../../context/Modal";
+import * as userActions from "../../store/session";
 import LoginForm from "./LoginForm";
+import { useDispatch } from "react-redux";
 import "./LoginFormModal.css";
 
 function LoginFormModal() {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
+
+  const useDemo = () => {
+    document.body.style.overflowY = "scroll";
+    return dispatch(
+      userActions.login({ credential: "Demo-lition", password: "password" })
+    );
+  };
 
   return (
     <>
@@ -83,6 +93,15 @@ function LoginFormModal() {
               <div className="seperator-line"></div>
             </div>
 
+            <button className="form--login--btn" onClick={useDemo}>
+              <div className="push-left">
+                <img
+                  className="make-smaller"
+                  src="data:image/png;base64,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"
+                />
+              </div>
+              Continue with Demo
+            </button>
             <button className="form--login--btn">
               <div className="push-left">
                 <svg
@@ -180,25 +199,6 @@ function LoginFormModal() {
                 </svg>
               </div>
               Continue with Apple
-            </button>
-            <button className="form--login--btn">
-              <div className="push-left">
-                <svg
-                  viewBox="0 0 24 24"
-                  role="presentation"
-                  aria-hidden="true"
-                  focusable="false"
-                  fill="#525252"
-                  width="20px"
-                  height="20px"
-                >
-                  <path
-                    d="m22.5 4h-21c-.83 0-1.5.67-1.5 1.51v12.99c0 .83.67 1.5 1.5 1.5h20.99a1.5 1.5 0 0 0 1.51-1.51v-12.98c0-.84-.67-1.51-1.5-1.51zm.5 14.2-6.14-7.91 6.14-4.66v12.58zm-.83-13.2-9.69 7.36c-.26.2-.72.2-.98 0l-9.67-7.36h20.35zm-21.17.63 6.14 4.67-6.14 7.88zm.63 13.37 6.3-8.1 2.97 2.26c.62.47 1.57.47 2.19 0l2.97-2.26 6.29 8.1z"
-                    fillRule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-              Continue with Email
             </button>
           </div>
         </Modal>

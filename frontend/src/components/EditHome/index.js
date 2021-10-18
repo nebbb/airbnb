@@ -46,6 +46,7 @@ export default function EditHome() {
   return (
     <div className="home-form__container">
       <form className="home-form__main" onSubmit={onSubmit}>
+        <h1>Edit a home</h1>
         <label>
           Home name
           <input

@@ -53,6 +53,7 @@ export default function HomeForm() {
   return (
     <div className="home-form__container">
       <form className="home-form__main" onSubmit={onSubmit}>
+        <h1>Create a home</h1>
         <label>
           Home name
           <input

@@ -42,10 +42,11 @@ export default function AdminPage() {
                 return (
                   <div className="applicant-list-item" key={applicant.id}>
                     <div>
-                      <span>{applicant.userId}</span>
-                      <span>{applicant.reason}</span>
+                      <span className="yespan">{`User ${applicant.userId}  submitted an application with reason:`}</span>{" "}
+                      <span className="yespan spann">{` ${applicant.reason}`}</span>
                     </div>
                     <button
+                      className="accept-btn"
                       onClick={(e) =>
                         onAccept(e, applicant.id, applicant.userId)
                       }

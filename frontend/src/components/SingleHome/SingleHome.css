@@ -326,3 +326,66 @@
 .push-right {
   margin-right: 0.6rem;
 }
+.hostedby {
+  font-size: 2.2rem;
+  font-family: "Airbnb Cereal App Bold";
+}
+.profilepicuser {
+  width: 10rem;
+  height: 10rem;
+  display: block;
+  border-radius: 50%;
+}
+.pushright {
+  margin-left: 1rem;
+}
+.hostedbydate {
+  font-size: 1.7rem;
+  color: #777;
+}
+.hidden {
+  display: none;
+}
+.just-a-little-bigger {
+  font-size: 1.6rem;
+  margin-left: 1rem;
+}
+.star-row__container {
+  margin-bottom: 2rem;
+}
+.comment__box {
+  margin-bottom: 3rem;
+}
+.review-cont {
+  outline: none;
+  margin-right: 1rem;
+  padding: 1rem;
+}
+.review-cont + button {
+  background-color: #55c595;
+  color: #fff;
+  font-size: 1.6rem;
+  padding: 0.6rem 2rem;
+  cursor: pointer;
+  border-radius: 0.8rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.brnreset {
+  border: none;
+  outline: none;
+  background: none;
+  background-color: transparent;
+  margin: 0 1rem;
+  cursor: pointer;
+}
+.editreviewin {
+  padding: 1rem;
+  border-radius: 0.8rem;
+  border: 1px solid #b3b3b3;
+  outline: none;
+}
+.logged-in-review {
+  margin-top: 1.2rem;
+}

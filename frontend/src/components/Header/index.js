@@ -15,8 +15,9 @@ export default function Header({ isLoaded }) {
   let dispatch = useDispatch();
   const onSubmit = async (e) => {
     e.preventDefault();
-    history.push("/homes");
-    dispatch(loadTheSearchedHomes(searchInput));
+    dispatch(loadTheSearchedHomes(searchInput)).then(() =>
+      history.push("/homes")
+    );
   };
 
   let sessionLinks;

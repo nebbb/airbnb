@@ -82,7 +82,7 @@ const reviewsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case LOAD_REVIWES: {
-      newState = { ...state };
+      newState = {};
       action.data.forEach((review) => {
         newState[review.id] = review;
       });

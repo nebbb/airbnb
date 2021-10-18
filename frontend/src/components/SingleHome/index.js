@@ -32,6 +32,9 @@ export default function SingleHome() {
   const users = useSelector((state) => state.users);
   const [rating, setRating] = useState(0);
   const [reviewInput, setReviewInput] = useState("");
+  const [loaded, setLoaded] = useState(false);
+  const commentBox = document.querySelector(".comment__box");
+  const [count, setCount] = useState(1);
 
   let inputs = document.querySelectorAll(".DateInput_input_1");
 
@@ -48,6 +51,18 @@ export default function SingleHome() {
     dispatch(loadTheReviews(homeId));
     dispatch(loadTheUsers());
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(loadTheReviews(homeId))
+  //     .then(() => setLoaded(true))
+  //     .then(() => {
+  //       const reviews = Object.values(realReviews)?.find(
+  //         (review) => review.User?.id === user?.id
+  //       );
+  //       if (reviews) commentBox?.classList.add("hidden");
+  //       else commentBox?.classList.remove("hidden");
+  //     });
+  // }, [dispatch, count]);
 
   const removeFav = (e) => {
     e.preventDefault();
@@ -115,8 +130,8 @@ export default function SingleHome() {
     setReviewInput("");
     setRating(0);
     dispatch(addTheReviews(payload)).then(() => dispatch(loadTheRatings()));
+    setCount((prev) => prev + 1);
   };
-
   return (
     <div className="single-home__container">
       <div className="single-home-info">
@@ -329,9 +344,6 @@ export default function SingleHome() {
             <div className="booking-mid">
               <DatePicker />
             </div>
-            <div>
-              <input type="number" /> Guests
-            </div>
             <div className="booking-bottom">
               <button onClick={(e) => submitBooking(e)}>Book</button>
             </div>
@@ -339,22 +351,23 @@ export default function SingleHome() {
         </div>
       </div>
       <div className="single-home-reviews">
-        {user ? (
-          <div>
+        {
+          <div className="comment__box">
             <div className="star-row__container">
               <Rating onClick={handleRating} ratingValue={rating} />
-              <p>{`${rating} stars`}</p>
+              <p className="just-a-little-bigger">{`${rating} stars`}</p>
             </div>
             <div className="post-review-container">
               <textarea
                 required
+                className="review-cont"
                 value={reviewInput}
                 onChange={(e) => setReviewInput(e.target.value)}
               />
               <button onClick={submitReview}>Post review</button>
             </div>
           </div>
-        ) : null}
+        }
         <div className="review-title-box">
           <div className="reviews-title">
             {reviews &&
@@ -405,11 +418,15 @@ export default function SingleHome() {
                     {review.userId === user?.id && (
                       <div className="logged-in-review">
                         <input
+                          className="editreviewin"
                           value={newReviewInput}
                           onChange={(e) => setNewReviewInput(e.target.value)}
                           placeholder="Edit review..."
                         />
-                        <button onClick={(e) => deleteReview(e, review.id)}>
+                        <button
+                          className="brnreset"
+                          onClick={(e) => deleteReview(e, review.id)}
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             x="0px"
@@ -473,7 +490,10 @@ export default function SingleHome() {
                             </g>
                           </svg>
                         </button>
-                        <button onClick={(e) => editReview(e, review.id)}>
+                        <button
+                          className="brnreset"
+                          onClick={(e) => editReview(e, review.id)}
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             x="0px"
@@ -556,7 +576,22 @@ export default function SingleHome() {
         </div>
       </div>
       <div className="single-home-hosted">
-        Hosted by {homes[homeId]?.User.username}
+        <div className="justflex">
+          <div>
+            <Link to={`/profile/${homes[homeId]?.User.id}`}>
+              <img
+                className="profilepicuser"
+                src={homes[homeId]?.User.profilePicture}
+              />
+            </Link>
+          </div>
+          <div className="pushright">
+            <p className="hostedby">Hosted by {homes[homeId]?.User.username}</p>
+            <p className="hostedbydate">
+              Joined in {homes[homeId]?.User.createdAt.split("T")[0]}
+            </p>
+          </div>
+        </div>
       </div>
       <div className="single-home-rules">
         <h2 className="house-rules-title">Things to know</h2>

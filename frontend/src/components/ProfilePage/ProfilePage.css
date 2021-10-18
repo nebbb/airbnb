@@ -11,20 +11,72 @@
   align-items: center;
   flex: 0 0 30%;
   padding: 2rem;
-  border: 1px solid #000;
+  border: 1px solid #d4d4d4;
+  border-radius: 1.2rem;
 }
 .profile-page-rightside {
   flex: 1;
   padding: 2rem;
-  border: 1px solid #000;
   text-align: left;
 }
 .profie-page__container {
   display: flex;
   margin-top: 3rem;
   text-align: center;
+  gap: 5rem;
 }
 .profie-page__container p {
-  border: 1px solid #000;
   margin-top: 1rem;
+}
+.profile-user-welcome {
+  font-size: 3rem;
+  font-family: "Airbnb Cereal App Bold";
+}
+.profile-when {
+  font-size: 1.5rem;
+  color: #777;
+}
+.plzjustflex {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.home-profile-pic {
+  width: 12rem;
+  height: 12rem;
+  border-radius: 1.2rem;
+}
+.profile-when + div {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #d4d4d4;
+  margin-top: 2rem;
+  font-family: "Airbnb Cereal App Bold";
+}
+.profile-h-name {
+  font-size: 1.6rem;
+  font-family: "Airbnb Cereal App Medium";
+}
+.profile-user-icon p {
+  font-size: 1.6rem;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-bottom: 2rem;
+}
+.bor-top-1 {
+  border-top: 1px solid #d4d4d4;
+  padding-top: 2rem;
+  margin-top: 3rem;
+}
+.profile-user-info {
+  width: 100%;
+}
+.makesmall {
+  width: 3rem;
+  height: 3rem;
+}
+.mar-top {
+  margin-top: 2rem;
 }
