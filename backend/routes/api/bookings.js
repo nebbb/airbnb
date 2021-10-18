@@ -26,4 +26,14 @@ router.post(
   })
 );
 
+router.delete(
+  "/:bookingId",
+  asyncHandler(async (req, res) => {
+    const bookid = req.params.bookingId;
+    const thebook = await Booking.findByPk(bookid);
+    await thebook.destroy();
+    return res.json(bookid);
+  })
+);
+
 module.exports = router;
