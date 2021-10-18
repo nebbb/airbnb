@@ -26,8 +26,8 @@ module.exports = {
           state: faker.address.state(),
           info: "3 guests · 1 bedroom · 2 beds · 1 bath",
           price: "$285",
-          lat: faker.address.latitude(),
-          long: faker.address.longitude(),
+          lat: 40.712776,
+          long: -74.005974,
           type: "Cabin",
           picOne:
             "https://a0.muscache.com/im/pictures/d1c76bbd-021f-42c4-8af0-62cf62073456.jpg?im_w=720",
@@ -46,8 +46,8 @@ module.exports = {
           state: faker.address.state(),
           info: "2 guests · 1 bed · 1 bath",
           price: "$175",
-          lat: faker.address.latitude(),
-          long: faker.address.longitude(),
+          lat: 41.712776,
+          long: -73.005974,
           type: "Home",
           picOne:
             "https://a0.muscache.com/im/pictures/22baa1a9-6a38-4627-b2fb-c763928bce1c.jpg?im_w=720",
@@ -66,8 +66,8 @@ module.exports = {
           state: faker.address.state(),
           info: "4 guests · 1 bedroom · 3 beds",
           price: "$122",
-          lat: faker.address.latitude(),
-          long: faker.address.longitude(),
+          lat: 42.712776,
+          long: -74.005974,
           type: "Home",
           picOne:
             "https://a0.muscache.com/im/pictures/46d8bcb3-2be5-4394-8122-385c7695fd06.jpg?im_w=720",
@@ -86,8 +86,8 @@ module.exports = {
           state: faker.address.state(),
           info: "4 guests · 1 bedroom · 1 bed · 1.5 baths",
           price: "$199",
-          lat: faker.address.latitude(),
-          long: faker.address.longitude(),
+          lat: 43.712776,
+          long: -75.005974,
           type: "Dome",
           picOne:
             "https://a0.muscache.com/im/pictures/af61b9be-0a1d-4128-bc6b-6e6b119391a8.jpg?im_w=720",
@@ -95,6 +95,26 @@ module.exports = {
             "https://a0.muscache.com/im/pictures/74d9b82e-1b3b-4175-80e9-20a972e695bb.jpg?im_w=720",
           picThree:
             "https://a0.muscache.com/im/pictures/a9831a60-4cfa-4b2d-8a41-cfcdd9f1e2f0.jpg?im_w=720",
+        },
+        {
+          userId: 1,
+          name: "Getaway - Sauna, WiFi, & Green Views!",
+          address: faker.address.streetAddress(),
+          description:
+            "Welcome to Meadow View- our new tiny shed home! We provide all the amenities you could want +more! And truly focus on indoor/outdoor living . Private outdoor amenities include: sauna, bathtub, shower, dining, fireplace, and grill to enjoy. Inside you will find it feels luxurious & cozy. Great for romantic couple getaways, outdoor enthusiasts, business travelers that need fast WiFi, and families with kids. 30 min drive to the Cosby entrance at the Nat'l Park. 45 mins to Gatlinburg/Pigeon Forge.",
+          city: faker.address.city(),
+          state: faker.address.state(),
+          info: "4 guests · 1 bedroom · 3 beds · 1 bath",
+          price: "$132",
+          lat: 44.712776,
+          long: -76.005974,
+          type: "Tiny house",
+          picOne:
+            "https://a0.muscache.com/im/pictures/b904f0b0-07ab-4a13-988c-11861d45f6e8.jpg?im_w=720",
+          picTwo:
+            "https://a0.muscache.com/im/pictures/3c5ba495-1a7e-43c6-8923-fa16154dbccc.jpg?im_w=720",
+          picThree:
+            "https://a0.muscache.com/im/pictures/b881a368-98cc-4bfe-af8c-d1e0a4678323.jpg?im_w=720",
         },
       ],
       {}
