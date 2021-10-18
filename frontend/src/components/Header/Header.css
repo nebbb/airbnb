@@ -20,6 +20,7 @@
   border: none;
   outline: none;
   border: 1px solid #dddddd;
+  width: 100%;
 }
 .single-home-img-1 {
 }
@@ -30,16 +31,24 @@
 .main-header-search {
 }
 .search-btn-main {
-  top: 0;
+  top: 0%;
   right: 0;
   background-color: rgb(255, 56, 92);
   border-radius: 50%;
   color: rgb(255, 255, 255);
-  padding: 0.8rem;
+  padding: 1.1rem;
   border: none;
   outline: none;
+  position: absolute;
 }
 .please-flex {
-  display: flex;
-  align-items: center;
+  position: relative;
+  width: 100%;
+}
+.item-head {
+  border: 1.6px solid #c5c5c5;
+  border-radius: 100px;
+}
+.main-header__search {
+  width: 50rem;
 }

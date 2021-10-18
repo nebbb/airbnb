@@ -57,7 +57,7 @@ export default function HostHome() {
             </Link>
           )
         ) : (
-          <Link to="/application">
+          <Link to="/signup">
             <button className="host-btn mar-top-esm">Learn more</button>
           </Link>
         )}

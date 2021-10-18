@@ -29,9 +29,8 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
   };
 
-
   return (
-    <>
+    <div className="yessuh">
       <div
         className="modal__outer-container modal__outer-container--drop"
         onClick={openMenu}
@@ -69,20 +68,26 @@ function ProfileButton({ user }) {
         </div>
         {showMenu && (
           <ul className="profile-dropdown">
-            <li>{user.username}</li>
-            <li>{user.email}</li>
+            <li className="single-li">{user.username}</li>
+            <li className="single-li">{user.email}</li>
+            <Link className="profile-a" to="/profile">
+              <li>Profile</li>
+            </Link>
+            <Link className="profile-a" to="/bookings">
+              <li>Bookings</li>
+            </Link>
+            <Link className="profile-a" to="/favourites">
+              <li>Favourites</li>
+            </Link>
             <li>
-              <Link className="profile-a" to="/profile">
-                Profile
-              </Link>
-            </li>
-            <li>
-              <button onClick={logout}>Log Out</button>
+              <button className="logout-btn" onClick={logout}>
+                Log Out
+              </button>
             </li>
           </ul>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

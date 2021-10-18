@@ -10,7 +10,7 @@ export default function Footer({ width }) {
           maxWidth: `${width}`,
         }}
       >
-        Add dummy footer text
+        Goat milk
       </div>
       <div
         className="second-section"

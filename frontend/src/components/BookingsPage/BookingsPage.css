@@ -1,0 +1,21 @@
+.booking-img {
+  width: 15rem;
+  height: 15rem;
+  background-position: center;
+  background-size: cover;
+  border-radius: 1.2rem;
+}
+.bookings-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.booking-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.booking-txt {
+  font-size: 1.6rem;
+}

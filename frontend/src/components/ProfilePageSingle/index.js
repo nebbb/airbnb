@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router";
 import { loadTheUsers } from "../../store/users";
-import "./ProfilePage.css";
 
-export default function ProfilePage() {
+export default function ProfilePageSingle() {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user);
   const users = useSelector((state) => state.users);
-  const { profileId } = useParams();
 
   useEffect(() => {
     dispatch(loadTheUsers());
@@ -20,9 +18,9 @@ export default function ProfilePage() {
           <div className="profile-user-icon">
             <div
               style={
-                users[profileId]?.profilePicture
+                user?.profilePicture
                   ? {
-                      backgroundImage: `url(${users[profileId]?.profilePicture})`,
+                      backgroundImage: `url(${user?.profilePicture})`,
                     }
                   : null
               }
@@ -35,10 +33,8 @@ export default function ProfilePage() {
       </div>
       <div className="profile-page-rightside">
         <div className="profile-user__info">
-          <h2 className="profile-user-welcome">
-            Hi, i'm {users[profileId]?.username}
-          </h2>
-          <p>Joined in {users[profileId]?.createdAt.split("T")[0]}</p>
+          <h2 className="profile-user-welcome">Hi, i'm {user?.username}</h2>
+          <p>Joined in {user?.createdAt.split("T")[0]}</p>
           <span>0 reviews</span>
           <div>Reviews by you</div>
         </div>

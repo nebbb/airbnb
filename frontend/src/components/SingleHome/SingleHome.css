@@ -43,7 +43,7 @@
 }
 .single-home-content-info-t {
   margin-top: 0.8rem;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-family: "Airbnb Cereal App Light";
 }
 .single-home__content {
@@ -61,6 +61,10 @@
 .home-bot {
   border-top: 1px solid #dddddd;
   border-bottom: 1px solid #dddddd;
+  padding: 3rem 0;
+}
+.single-home-hosted {
+  border-top: 1px solid #dddddd;
   padding: 3rem 0;
 }
 .home-bot-real {
@@ -86,11 +90,11 @@
   justify-content: center;
 }
 .mid-flex-1 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-family: "Airbnb Cereal App Medium";
 }
 .mid-flex-2 {
-  font-size: 1.34rem;
+  font-size: 1.5rem;
   font-family: "Airbnb Cereal App Light";
   color: #717171;
 }
@@ -107,7 +111,7 @@
   margin-bottom: 2rem;
 }
 .home-bot-desc {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 }
 .booking__container {
   display: flex;
@@ -220,4 +224,105 @@
 }
 .fa-star {
   font-size: 2rem;
+}
+.extra-star {
+  font-size: 2.2rem;
+}
+.extra-tex {
+  font-size: 2.2rem;
+  color: #222222;
+}
+.fir-text {
+  font-size: 1.7rem;
+  font-family: "Airbnb Cereal App Bold";
+}
+.sec-text {
+  font-size: 1.5rem;
+}
+.reviews__overall__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+  margin-bottom: 3rem;
+}
+.logged-in-review {
+  display: flex;
+}
+.post-review-container {
+  display: flex;
+  align-items: center;
+}
+.mar-both {
+  margin: 1rem 0;
+  font-size: 1.7rem;
+}
+.remove-book {
+  border: none;
+  background-color: #ce2029;
+  color: #fff;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  font-family: "Airbnb Cereal App Medium";
+  border-radius: 0.8rem;
+}
+.book-desc {
+  font-size: 1.7rem;
+}
+.house-rule div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.house-rule p {
+  font-family: "Airbnb Cereal App Light";
+  font-size: 1.6rem;
+  color: #222222;
+}
+.house-rules-container {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.house-tit {
+  margin-bottom: 1rem;
+  font-size: 1.7rem;
+  font-family: "Airbnb Cereal App Bold";
+}
+.house-rules-title {
+  font-size: 2rem;
+  font-family: "Airbnb Cereal App Bold";
+}
+.fpo {
+  font-size: 1.5rem;
+}
+.single-rightside {
+  display: flex;
+  align-items: center;
+}
+.justflex {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.edit-home {
+  background-color: #55c595;
+  color: #fff;
+  font-size: 1.6rem;
+  padding: 0.6rem 2rem;
+  cursor: pointer;
+  border-radius: 0.8rem;
+}
+.remove-homebtn {
+  background-color: #ff4c61;
+  border: none;
+  outline: none;
+  font-size: 1.6rem;
+  color: #fff;
+  padding: 0.6rem 2rem;
+  cursor: pointer;
+  border-radius: 0.8rem;
+}
+.push-right {
+  margin-right: 0.6rem;
 }

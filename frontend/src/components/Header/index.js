@@ -1,13 +1,16 @@
 import React from "react";
 import "./Header.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { loadTheSearchedHomes } from "../../store/homes";
 import { useHistory } from "react-router";
+import ProfileButton from "../Navigation/ProfileButton";
+import LoginFormModal from "../LoginFormModal";
 
-export default function Header() {
+export default function Header({ isLoaded }) {
   let history = useHistory();
+  const sessionUser = useSelector((state) => state.session.user);
   const [searchInput, setSearchInput] = useState("");
   let dispatch = useDispatch();
   const onSubmit = async (e) => {
@@ -15,6 +18,17 @@ export default function Header() {
     history.push("/homes");
     dispatch(loadTheSearchedHomes(searchInput));
   };
+
+  let sessionLinks;
+  if (sessionUser) {
+    sessionLinks = <ProfileButton user={sessionUser} />;
+  } else {
+    sessionLinks = (
+      <>
+        <LoginFormModal />
+      </>
+    );
+  }
 
   return (
     <div className="main-header__container">
@@ -52,7 +66,9 @@ export default function Header() {
         </form>
       </div>
       <div className="main-header__user-nav">
-        <p>Become a host</p>
+        <li className="header__user-item item-head">
+          {isLoaded && sessionLinks}
+        </li>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ export default function DiscoverHome() {
       <h2 className="explore-title mar-top-sm">Discover things to do</h2>
       <div className="discover-card__container">
         <div className="discover-card">
-          <NavLink to="ok">
+          <NavLink to="/homes">
             <img
               src="https://a0.muscache.com/im/pictures/ad109d56-2421-40cd-98e6-e114160dc85b.jpg?im_w=720"
               alt="Discover"
@@ -21,7 +21,7 @@ export default function DiscoverHome() {
           </p>
         </div>
         <div className="discover-card">
-          <NavLink to="ok">
+          <NavLink to="/homes">
             <img
               src="https://a0.muscache.com/im/pictures/0ce799cb-7553-4369-be9e-d0011e0ef636.jpg?im_w=720"
               alt="Discover"
@@ -34,7 +34,7 @@ export default function DiscoverHome() {
           </p>
         </div>
         <div className="discover-card">
-          <NavLink to="ok">
+          <NavLink to="/homes">
             <img
               src="https://a0.muscache.com/im/pictures/3c2676df-0874-45a3-a82f-bbf57ccde1cc.jpg?im_w=720"
               alt="Discover"

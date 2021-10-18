@@ -19,6 +19,8 @@ import ApplicationPage from "./components/ApplicationPage";
 import AdminPage from "./components/AdminPage";
 import BookingsPage from "./components/BookingsPage";
 import FavouritesPage from "./components/FavouritesPage";
+import Navigation from "./components/Navigation";
+import ProfilePageSingle from "./components/ProfilePageSingle";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,22 +46,23 @@ function App() {
           <EditHome />
         </Route>
         <Route exact path="/homes">
+          <Header isLoaded={isLoaded} />
           <HomesList />
         </Route>
         <Route exact path="/bookings">
-          <Header />
+          <Header isLoaded={isLoaded} />
           <div className="main__content-wrapper">
             <BookingsPage />
           </div>
         </Route>
         <Route exact path="/favourites">
-          <Header />
+          <Header isLoaded={isLoaded} />
           <div className="main__content-wrapper">
             <FavouritesPage />
           </div>
         </Route>
         <Route path="/profile/:profileId">
-          <Header />
+          <Header isLoaded={isLoaded} />
           <div className="main__content-wrapper--tighter">
             <ProfilePage />
           </div>
@@ -68,13 +71,13 @@ function App() {
           <AdminPage />
         </Route>
         <Route path="/profile">
-          <Header />
+          <Header isLoaded={isLoaded} />
           <div className="main__content-wrapper--tighter">
-            SINGLE PROFILE PAGE
+            <ProfilePageSingle />
           </div>
         </Route>
         <Route path="/homes/:homeId">
-          <Header />
+          <Header isLoaded={isLoaded} />
           <div className="main__content-wrapper--tighter">
             <SingleHome />
           </div>
