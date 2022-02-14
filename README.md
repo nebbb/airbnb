@@ -69,4 +69,4 @@ Admins have access to a panel where they can approve applications for users that
 
 ### Google Maps
 
-This app has google maps integration, homes pop up on the expandable map on the right side of your screen using latitude and longitude cordinates. Each home has a marker plotted on the map that is expandable to show more info on the home
+This app has google maps integration, homes pop up on the expandable map on the right side of your screen using latitude and longitude cordinates. Each home has a marker plotted on the map that is expandable to show more info on the home.
