@@ -8,7 +8,7 @@ View the [Wiki](https://github.com/nebbb/daproject/wiki) for more project info.
 
 ![Splash Page](https://i.imgur.com/qJGAkDn.png)
 
-![Main Page](https://i.imgur.com/WXupdss.png
+![Main Page](https://i.imgur.com/WXupdss.png)
 
 ---
 
