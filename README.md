@@ -1,6 +1,6 @@
 # AirBnb - *Clone of AirBnb*
 
-Initially, this project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Backend and frontend is coded in JavaScript, using React/Redux.
+Initially, this project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Backend and frontend is coded in JavaScript, using React/Redux
 
 View the [Live Website Via Heroku](https://aa-airbnb.herokuapp.com/)
 
