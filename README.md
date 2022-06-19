@@ -4,7 +4,7 @@ Initially, this project was bootstrapped with [Create React App](https://github.
 
 View the [Live Website Via Heroku](https://aa-airbnb.herokuapp.com/)
 
-View the [Wiki](https://github.com/nebbb/daproject/wiki) for more project info.
+View the [Wiki](https://github.com/nebbb/daproject/wiki) for more project info
 
 ![Splash Page](https://i.imgur.com/qJGAkDn.png)
 
